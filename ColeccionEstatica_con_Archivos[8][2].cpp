@@ -10,54 +10,54 @@
 
 using namespace std;
 
-struct cedula{
-	int numero;
-	char nombre[25];
-	bool activo;
+struct cedula {  // Se crea una sturctura llmada cedula que posee tres características
+	int numero;               //  Una variable tipo entero llmada numero
+	char nombre[25];          //  Una  variable de tipo caracter llmada nombre con una capacidad de 25
+	bool activo;              //  Una variable llmada activo de tipo booleano
 };
 
-cedula arreglo[50];
-int cont = 0;
+cedula arreglo[50];  // Se crea un arreglo de tipo cedula con una capacidad de 50
+int cont = 0;  // Se crea una variable tipo entero llamada cont que inicializa en 0
 
-void guardararchivo(cedula Arreglo[], int cont){
+void guardararchivo(cedula Arreglo[], int cont) {
 	system("CLS");//limpia la pantalla
 	cout << endl << endl;
 	FILE* archcedulas;
-	fopen_s(&archcedulas, "cedulas.txt", "w+");
+	fopen_s(&archcedulas, "cedulas.txt", "w+");  // Abre el archivo en modo escritura y lectura
 
-	for (int y = 0; y<cont; y++){
-		if (Arreglo[y].activo == true){//solo se guardaran aquellas personas que esten activas
-			printf("Cedula: %i Nombre:  %s		-guardado- \n", arreglo[y].numero, arreglo[y].nombre);
+	for (int y = 0; y<cont; y++) {
+		if (Arreglo[y].activo == true) {//solo se guardaran aquellas personas que esten activas
+			printf("Cedula: %i Nombre:  %s      -guardado- \n", arreglo[y].numero, arreglo[y].nombre);
 			fprintf_s(archcedulas, "%s", Arreglo[y].nombre);
-			if (y == (cont - 1)){ fprintf_s(archcedulas, "\n%i", Arreglo[y].numero); }// se eliminan los enter al final del archivo de texto
+			if (y == (cont - 1)) { fprintf_s(archcedulas, "\n%i", Arreglo[y].numero); }// se eliminan los enter al final del archivo de texto
 			else fprintf_s(archcedulas, "\n%i\n\n", Arreglo[y].numero);
 		}
 	}
-	fclose(archcedulas);
+	fclose(archcedulas);  // Cierra el archivo
 	cout << endl << " Presione una tecla para continuar..." << endl;
 }
 
-void cargararchivo(cedula arreglo[], int &cont){//El arreglo no debe ingresar como referencia, pero el contador si para que su valor cambie respecto a lo que se hace en la funcion
+void cargararchivo(cedula arreglo[], int &cont) {//El arreglo no debe ingresar como referencia, pero el contador si para que su valor cambie respecto a lo que se hace en la funcion
 	system("CLS");
 	FILE*archcedulas;
-	fopen_s(&archcedulas, "cedulas.txt", "r");
-	if (archcedulas == NULL){
-		cout << "no se encontro el archivo" << endl;
+	fopen_s(&archcedulas, "cedulas.txt", "r");  // Abre el archivo en modo de solo lectura
+	if (archcedulas == NULL) {
+		cout << "no se encontro el archivo" << endl;  // Imprime si o encuentra el archivo
 	}
-	else{
-		while(!feof(archcedulas)){
+	else {
+		while (!feof(archcedulas)) {
 			fscanf_s(archcedulas, "%s", arreglo[cont].nombre, 25);//cont al inicio esta en cero
 			fscanf_s(archcedulas, "%i", &arreglo[cont].numero);
-			printf("\n\n  Cedula: %i Nombre:  %s		-cargado- \n", arreglo[cont].numero, arreglo[cont].nombre);
+			printf("\n\n  Cedula: %i Nombre:  %s        -cargado- \n", arreglo[cont].numero, arreglo[cont].nombre);  //  Imprime la información de cada persona cargada
 			arreglo[cont].activo = true;// Activa de nuevo a la persona
 			cont++;
 		}
-		fclose(archcedulas);
+		fclose(archcedulas);  // Cierra el archivo
 	}
 	cout << endl << " Presione una tecla para continuar..." << endl;
 }
 
-void insertar(cedula arreglof[], int &cont){
+void insertar(cedula arreglof[], int &cont) {  // Subrutina para ingresar nuevas personas al registro
 	system("CLS");
 	cout << endl << " ----------------  Ingresar persona  ----------------" << endl;
 	cout << endl << " Digite el nombre de la persona: ";
@@ -68,7 +68,7 @@ void insertar(cedula arreglof[], int &cont){
 	cont++;
 }
 
-void buscar_nombre(cedula arreglo[], int cont){
+void buscar_nombre(cedula arreglo[], int cont) {  //  Subrutina para buscar un registro por nombre
 	system("CLS");
 	cout << endl << " ----------------  Buscar persona por nombre  ----------------" << endl << endl << endl;
 	char cual[25];
@@ -76,40 +76,40 @@ void buscar_nombre(cedula arreglo[], int cont){
 	cin >> cual;
 	cout << endl << endl;
 	int i;
-	for (i = 0; i<cont; i++){
-		if ((strcmp(arreglo[i].nombre, cual) == 0) && (arreglo[i].activo == true)){// compara el nombre y si esta activo
-			cout << "El numero de cedula de " << cual << " es: " << arreglo[i].numero << endl;
+	for (i = 0; i<cont; i++) {
+		if ((strcmp(arreglo[i].nombre, cual) == 0) && (arreglo[i].activo == true)) {// compara el nombre y si esta activo
+			cout << "El numero de cedula de " << cual << " es: " << arreglo[i].numero << endl;  // Imprime esto si lo encuentra
 			break;
 		}
 	}
-	if (i == cont){
-		cout << " El nombre no ha sido ingresado o fue borrado" << endl;
+	if (i == cont) {
+		cout << " El nombre no ha sido ingresado o fue borrado" << endl;  // Imprime esto si no lo encuentra
 	}
 }
 
-void buscar_cedula(cedula arreglo[], int cont, int cual){
+void buscar_cedula(cedula arreglo[], int cont, int cual) {  //  Subrutina para buscar un registro por número de cédula
 	int i;
-	for (i = 0; i<cont; i++){
-		if ((arreglo[i].numero == cual) && (arreglo[i].activo == true)){
-			cout << "El numero de cedula: " << cual << " corresponde a: " << arreglo[i].nombre << endl;
+	for (i = 0; i<cont; i++) {
+		if ((arreglo[i].numero == cual) && (arreglo[i].activo == true)) {
+			cout << "El numero de cedula: " << cual << " corresponde a: " << arreglo[i].nombre << endl;  // Imprime esto si lo encuentra
 			break;
 		}
 	}
-	if (i == cont){
-		cout << " El numero de cedula no ha sido ingresado o fue borrado" << endl;
+	if (i == cont) {
+		cout << " El numero de cedula no ha sido ingresado o fue borrado" << endl;  // Imprime esto si no lo encuentra
 	}
 }
 
-void listarcedulas(cedula arreglo[], int cont){
+void listarcedulas(cedula arreglo[], int cont) {  // Lista todos los registros en el arreglo
 	system("CLS");
 	cout << endl << " ----------------  Lista de personas  ----------------" << endl << endl;
 	int numerador = 1;
-	cout << "		# Cedula		Nombre" << endl << endl;
-	if (cont == 0){ cout << endl << "		La lista esta vacia." << endl; }
-	else{
-		for (int i = 0; i<cont; i++){
-			if (arreglo[i].activo == true){
-				cout << "	" << numerador << "	" << arreglo[i].numero << "		" << arreglo[i].nombre << endl;
+	cout << "       # Cedula        Nombre" << endl << endl;
+	if (cont == 0) { cout << endl << "       La lista esta vacia." << endl; }  //  Imprime en caso de no haber registros
+	else {
+		for (int i = 0; i<cont; i++) {
+			if (arreglo[i].activo == true) {
+				cout << "   " << numerador << " " << arreglo[i].numero << "     " << arreglo[i].nombre << endl;  // Imprime la información de cada registro al mismo tiempo que los numera
 				numerador++;
 			}
 		}
@@ -117,7 +117,7 @@ void listarcedulas(cedula arreglo[], int cont){
 	cout << endl << endl << " ************** Fin de la lista  ***************" << endl;
 }
 
-int buscarparaborrar(cedula arreglo[], int &cont){
+int buscarparaborrar(cedula arreglo[], int &cont) {
 	system("CLS");
 	cout << endl << " ----------------  Buscar persona para borrar  ----------------" << endl << endl;
 	char cual[25];
@@ -125,51 +125,51 @@ int buscarparaborrar(cedula arreglo[], int &cont){
 	cin >> cual;
 	cout << endl << endl;
 	int i;
-	for (i = 0; i<cont; i++){
-		if ((strcmp(arreglo[i].nombre, cual) == 0) && (arreglo[i].activo == true)){
+	for (i = 0; i<cont; i++) {
+		if ((strcmp(arreglo[i].nombre, cual) == 0) && (arreglo[i].activo == true)) {  //Compara el valor ingresado con cada uno en el registro al mismo tiempo que verfica su estado de actividad
 			cout << endl << " Persona borrada con exito" << endl << endl;
 			cont--;//decrementa el contador para que la cuenta de personas sea precisa
 			return i;//retorna el numero de lugar en el que esta el nombre en el arreglo
 		}
 	}
-	if (i == cont){
+	if (i == cont) {
 		cout << " El nombre no ha sido ingresado o ya fue borrado" << endl;
 		return -1;//retorna -1 ya q la funcion es tipo entero, y al ser llamada se esper un valor de regreso
 	}
 	else return -2;//Se escribe para evitar warning
 }
 
-void main(){
+void main() {
 	bool menu = true;
-	while (menu){
+	while (menu) {  // menu igual a cualquier otro
 		system("CLS");
-		cout << endl << endl << "	-----------------	Menu Principal   -----------------" << endl << endl;
-		cout << "		1. Agregar persona" << endl;
-		cout << "		2. Buscar por nombre" << endl;
-		cout << "		3. Buscar por cedula" << endl;
-		cout << "		4. Listar todos" << endl;
-		cout << "		5. Borrar una persona" << endl;
-		cout << "		6. Guardar lista a archivo" << endl;
-		cout << "		7. Cargar lista desde archivo " << endl;
-		cout << "		8. Salir" << endl << endl;
-		cout << "		Digite una opcion: ";
+		cout << endl << endl << "   -----------------   Menu Principal   -----------------" << endl << endl;
+		cout << "       1. Agregar persona" << endl;
+		cout << "       2. Buscar por nombre" << endl;
+		cout << "       3. Buscar por cedula" << endl;
+		cout << "       4. Listar todos" << endl;
+		cout << "       5. Borrar una persona" << endl;
+		cout << "       6. Guardar lista a archivo" << endl;
+		cout << "       7. Cargar lista desde archivo " << endl;
+		cout << "       8. Salir" << endl << endl;
+		cout << "       Digite una opcion: ";
 		int opcion = 0;
 		cin >> opcion;
-		switch (opcion){
-		case 1:{
+		switch (opcion) {
+		case 1: {
 			insertar(arreglo, cont);
 			cout << endl << endl << " La persona fue ingresada correctamente." << endl << endl;
 			cout << " Presione una tecla para continuar..." << endl;
 			_getch();
 			break;
 		}
-		case 2:{
+		case 2: {
 			buscar_nombre(arreglo, cont);
 			cout << endl << " Presione una tecla para continuar..." << endl;
 			_getch();
 			break;
 		}
-		case 3:{
+		case 3: {
 			system("CLS");
 			cout << endl << " ----------------  Buscar persona por #cedula  ----------------" << endl << endl << endl;
 			int cual;
@@ -181,30 +181,30 @@ void main(){
 			_getch();
 			break;
 		}
-		case 4:{
+		case 4: {
 			listarcedulas(arreglo, cont);
 			cout << endl << " Presione una tecla para continuar..." << endl;
 			_getch();
 			break;
 		}
-		case 5:{
+		case 5: {
 			arreglo[buscarparaborrar(arreglo, cont)].activo = false;// desactiva persona
 			cout << endl << " Presione una tecla para continuar..." << endl;
 			_getch();
 			break;
 		}
-		case 6:{
+		case 6: {
 			guardararchivo(arreglo, cont);
 			_getch();
 			break;
 		}
-		case 7:{
-			if (cont != 0){
+		case 7: {
+			if (cont != 0) {
 				cout << endl << endl << "  Se perderan los cambios realizados en esta sesion," << endl;
 				cout << "  desea continuar(S/N): ";
 				char sino[2];
 				cin >> sino;
-				if ((strcmp(sino, "S") == 0) || (strcmp(sino, "s") == 0)){
+				if ((strcmp(sino, "S") == 0) || (strcmp(sino, "s") == 0)) {
 					cont = 0;
 					cargararchivo(arreglo, cont);
 				}
@@ -215,24 +215,24 @@ void main(){
 			break;
 		}
 
-		case 8:{
+		case 8: {
 			menu = false;
 			system("CLS");
-			cout << endl << endl << endl << endl << "			***********************************" << endl;
-			cout << "			*                                 *" << endl;
-			cout << "			*   *******  *******   *******    *" << endl;
-			cout << "			*      *     *         *          *" << endl;
-			cout << "			*      *     *****     *          *" << endl;
-			cout << "			*      *     *         *          *" << endl;
-			cout << "			*      *     *******   *******    *" << endl;
-			cout << "			*                                 *" << endl;
-			cout << "			***********************************" << endl << endl << endl;
+			cout << endl << endl << endl << endl << "           ***********************************" << endl;
+			cout << "           *                                 *" << endl;
+			cout << "           *   *******  *******   *******    *" << endl;
+			cout << "           *      *     *         *          *" << endl;
+			cout << "           *      *     *****     *          *" << endl;
+			cout << "           *      *     *         *          *" << endl;
+			cout << "           *      *     *******   *******    *" << endl;
+			cout << "           *                                 *" << endl;
+			cout << "           ***********************************" << endl << endl << endl;
 			cout << " Presione una tecla para salir..." << endl;
 			_getch();
 			break;
 		}
-		default:{
-			cout << endl << "La opcion digitada no exite" << endl << endl;
+		default: {
+			cout << endl << "La opcion digitada no exsite" << endl << endl;
 			cout << " Presione una tecla para continuar..." << endl;
 			_getch();
 		}
