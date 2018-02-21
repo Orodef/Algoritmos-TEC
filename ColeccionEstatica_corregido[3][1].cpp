@@ -18,7 +18,7 @@ typedef struct T_Producto {
     float Precio;
     int Disponible;
     bool Activo;
-} X;
+};
 
 const int Max = 1000;  // Capacidad máxima de 1900
 int Ultimo = 0;
