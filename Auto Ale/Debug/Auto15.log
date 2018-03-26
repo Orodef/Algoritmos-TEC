@@ -1,0 +1,15 @@
+﻿  Main.cpp
+c:\users\ale-h\documents\universidad\algoritmos\auto\bonus.h(16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\ale-h\documents\universidad\algoritmos\auto\main.cpp(214): warning C4778: 'sprintf' : unterminated format string '%'
+c:\users\ale-h\documents\universidad\algoritmos\auto\main.cpp(226): warning C4778: 'sprintf' : unterminated format string '%'
+c:\users\ale-h\documents\universidad\algoritmos\auto\main.cpp(238): warning C4778: 'sprintf' : unterminated format string '%'
+c:\users\ale-h\documents\universidad\algoritmos\auto\main.cpp(250): warning C4778: 'sprintf' : unterminated format string '%'
+c:\users\ale-h\documents\universidad\algoritmos\auto\main.cpp(262): warning C4778: 'sprintf' : unterminated format string '%'
+c:\users\ale-h\documents\universidad\algoritmos\auto\main.cpp(274): warning C4778: 'sprintf' : unterminated format string '%'
+c:\users\ale-h\documents\universidad\algoritmos\auto\main.cpp(286): warning C4778: 'sprintf' : unterminated format string '%'
+c:\users\ale-h\documents\universidad\algoritmos\auto\main.cpp(298): warning C4778: 'sprintf' : unterminated format string '%'
+c:\users\ale-h\documents\universidad\algoritmos\auto\main.cpp(310): warning C4778: 'sprintf' : unterminated format string '%'
+c:\users\ale-h\documents\universidad\algoritmos\auto\main.cpp(322): warning C4778: 'sprintf' : unterminated format string '%'
+c:\users\ale-h\documents\universidad\algoritmos\auto\main.cpp(756): warning C4805: '==': unsafe mix of type 'float' and type 'bool' in operation
+c:\users\ale-h\documents\universidad\algoritmos\auto\main.cpp(795): warning C4805: '==': unsafe mix of type 'float' and type 'bool' in operation
+  Auto15.vcxproj -> C:\Users\ale-h\Documents\Universidad\Algoritmos\Auto\Debug\Auto15.exe
