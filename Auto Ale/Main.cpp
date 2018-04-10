@@ -206,7 +206,6 @@ void dibujarMenu() {
 	al_flip_display();
 }
 
-
 //dibujarPuntaje: función encargada de dibujar en pantalla el puntaje actual
 //Entradas: ninguna
 //Salidas: ninguna
@@ -226,8 +225,8 @@ void dibujarPuntaje() {
 void dibujargas() {
 	char gasCadena[10];
 	sprintf(gasCadena, "%i""%", gas);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 315, ALLEGRO_ALIGN_CENTRE, "Gas:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 345, ALLEGRO_ALIGN_CENTRE, gasCadena);
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 345, ALLEGRO_ALIGN_CENTRE, "Gas:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 375, ALLEGRO_ALIGN_CENTRE, gasCadena);
 	al_flip_display();
 }
 
@@ -378,7 +377,7 @@ void dibujarVelocidad() {
 void dibujarMarcha() {
 	char marCadena[10];
 	sprintf(marCadena, "%.i", marcha);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 265, ALLEGRO_ALIGN_CENTRE, "Velocidad:");
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 265, ALLEGRO_ALIGN_CENTRE, "Marcha:");
 	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 295, ALLEGRO_ALIGN_CENTRE, marCadena);
 	al_flip_display();
 }
@@ -1441,6 +1440,7 @@ int main(int argc, char **argv) {
 				//dibujarRectanguloJuego();
 				dibujarPuntaje();
 				dibujargas();
+				dibujarMarcha();
 				//dibujargasusado();
 				dibujarSalud();
 				dibujarVidas();
