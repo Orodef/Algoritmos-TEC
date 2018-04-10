@@ -909,7 +909,7 @@ void cambiovelocidad(int movimiento) {
 	if (teclasDireccion[S] && velocidad > 1){ // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
 		velocidad -= 2;
 	}
-	if (teclasDireccion[W]) {// si se presiona la letra W se le va a empezar a sumar velocidad cada vez que se presione o si se mantiene presionda
+	if (teclasDireccion[W] && velocidad < 299){// si se presiona la letra W se le va a empezar a sumar velocidad cada vez que se presione o si se mantiene presionda
 		velocidad += 2;
 	}
 }
