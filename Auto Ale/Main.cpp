@@ -888,13 +888,13 @@ void moverEnemigoTriangulo(int movimiento, int tiempo) {
 //Restricciones: ninguna
 void moverPersonaje(int movimiento) {
 	if (teclasDireccion[S]) {
-		if (personaje->y < 500) personaje->y += movimiento;
+		if (personaje->y < 50) personaje->y += movimiento;
 	}
 	if (teclasDireccion[W]) {
-		if (personaje->y > posicionRectanguloJuego + 10) personaje->y -= movimiento;
+		if (personaje->y > 10) personaje->y -= movimiento;
 	}
 	if (teclasDireccion[D]) {
-		if (personaje->x < (770)) personaje->x += movimiento;
+		if (personaje->x < (800)) personaje->x += movimiento;
 	}
 	if (teclasDireccion[A]) {
 		if (personaje->x > 300) personaje->x -= movimiento;
