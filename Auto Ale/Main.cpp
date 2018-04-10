@@ -427,8 +427,8 @@ void dibujarVelocidad(){
 void dibujarVidas(){
 	char vidasCadena[10];
 	sprintf(vidasCadena, "%i", personaje->vidas);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 630, 25, ALLEGRO_ALIGN_CENTRE, "Vidas:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 680, 25, ALLEGRO_ALIGN_CENTRE, vidasCadena);
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 75, 185, ALLEGRO_ALIGN_CENTRE, "Vidas:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 75, 215, ALLEGRO_ALIGN_CENTRE, vidasCadena);
 	al_flip_display();
 }
 
