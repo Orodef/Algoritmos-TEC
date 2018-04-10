@@ -153,7 +153,7 @@ ALLEGRO_FONT *fuente = al_load_font("JacobiStriped.ttf", 16, NULL);
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void reproducirMusicaJuego(){
+void reproducirMusicaJuego() {
 	al_play_sample(musicaJuego, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 }
 
@@ -162,7 +162,7 @@ void reproducirMusicaJuego(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void reproducirturboPersonaje(){
+void reproducirturboPersonaje() {
 	instanciaSonido = al_create_sample_instance(turbPersonaje);
 	al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
 	al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
@@ -174,7 +174,7 @@ void reproducirturboPersonaje(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void reproducirDisparoEnemigo(){
+void reproducirDisparoEnemigo() {
 	instanciaSonido = al_create_sample_instance(disparoEnemigo);
 	al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
 	al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
@@ -186,7 +186,7 @@ void reproducirDisparoEnemigo(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void reproducirColisionEnemigo(){
+void reproducirColisionEnemigo() {
 	instanciaSonido = al_create_sample_instance(colisionEnemigo);
 	al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
 	al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
@@ -198,7 +198,7 @@ void reproducirColisionEnemigo(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarMenu(){
+void dibujarMenu() {
 	al_draw_text(fuente, al_map_rgb(255, 255, 255), 600, 150, ALLEGRO_ALIGN_CENTRE, "Selccione uno de los siguientes:");
 	al_draw_text(fuente, al_map_rgb(255, 255, 255), 600, 260, ALLEGRO_ALIGN_CENTRE, "1- JUGAR");
 	al_draw_text(fuente, al_map_rgb(255, 255, 255), 600, 320, ALLEGRO_ALIGN_CENTRE, "2- VER TABLA DE PUNTAJES");
@@ -211,11 +211,11 @@ void dibujarMenu(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarPuntaje(){
+void dibujarPuntaje() {
 	char puntajeCadena[10];
 	sprintf(puntajeCadena, "%i""%", puntaje);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 900, 25, ALLEGRO_ALIGN_LEFT, "Puntaje:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 25, ALLEGRO_ALIGN_LEFT, puntajeCadena);
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 400, ALLEGRO_ALIGN_CENTRE, "Puntaje:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 430, ALLEGRO_ALIGN_CENTRE, puntajeCadena);
 	al_flip_display();
 }
 
@@ -223,11 +223,11 @@ void dibujarPuntaje(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujargas(){
+void dibujargas() {
 	char gasCadena[10];
 	sprintf(gasCadena, "%i""%", gas);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 75, 265, ALLEGRO_ALIGN_LEFT, "Gas:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 75, 295, ALLEGRO_ALIGN_LEFT, gasCadena);
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 265, ALLEGRO_ALIGN_CENTRE, "Gas:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 295, ALLEGRO_ALIGN_CENTRE, gasCadena);
 	al_flip_display();
 }
 
@@ -235,7 +235,7 @@ void dibujargas(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujargasusado(){
+void dibujargasusado() {
 	char gasusadoCadena[10];
 	sprintf(gasusadoCadena, "%i""%", gasusado);
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 25, ALLEGRO_ALIGN_LEFT, "Gas Utilizado:");
@@ -248,7 +248,7 @@ void dibujargasusado(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarbalasdisp(){
+void dibujarbalasdisp() {
 	char balasgastCadena[10];
 	sprintf(balasgastCadena, "%i""%", balasdisp);
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 100, ALLEGRO_ALIGN_LEFT, "Balas Disparadas:");
@@ -260,7 +260,7 @@ void dibujarbalasdisp(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarenemigosel(){
+void dibujarenemigosel() {
 	char enemigoselCadena[10];
 	sprintf(enemigoselCadena, "%i""%", enemigosel);
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 200, ALLEGRO_ALIGN_LEFT, "Enemigos eliminados:");
@@ -272,7 +272,7 @@ void dibujarenemigosel(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarnumbonus(){
+void dibujarnumbonus() {
 	char bonusCadena[10];
 	sprintf(bonusCadena, "%i""%", bonusop);
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 150, ALLEGRO_ALIGN_LEFT, "Bonus optenidos:");
@@ -284,7 +284,7 @@ void dibujarnumbonus(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarbalasperdidas(){
+void dibujarbalasperdidas() {
 	char balCadena[10];
 	sprintf(balCadena, "%i""%", balasperdidas);
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 300, ALLEGRO_ALIGN_LEFT, "Balas perdidas:");
@@ -296,7 +296,7 @@ void dibujarbalasperdidas(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarbonusgenerados(){
+void dibujarbonusgenerados() {
 	char bonCadena[10];
 	sprintf(bonCadena, "%i""%", bonusgenerados);
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 350, ALLEGRO_ALIGN_LEFT, "Bonus generados:");
@@ -308,7 +308,7 @@ void dibujarbonusgenerados(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarbonusperdidos(){
+void dibujarbonusperdidos() {
 	char bonperCadena[10];
 	sprintf(bonperCadena, "%i""%", bonusperdidos);
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 400, ALLEGRO_ALIGN_LEFT, "Bonus perdidos:");
@@ -322,12 +322,12 @@ void dibujarbonusperdidos(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarnumenemigos(){
-char enCadena[10];
-sprintf(enCadena, "%i""%", numenemigos);
-al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 250, ALLEGRO_ALIGN_LEFT, "Numero enemigos:");
-al_draw_text(fuente, al_map_rgb(0, 255, 0), 250, 250, ALLEGRO_ALIGN_LEFT, enCadena);
-al_flip_display();
+void dibujarnumenemigos() {
+	char enCadena[10];
+	sprintf(enCadena, "%i""%", numenemigos);
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 250, ALLEGRO_ALIGN_LEFT, "Numero enemigos:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 250, 250, ALLEGRO_ALIGN_LEFT, enCadena);
+	al_flip_display();
 }
 
 
@@ -335,7 +335,7 @@ al_flip_display();
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarcontroles(){
+void dibujarcontroles() {
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 945, 100, ALLEGRO_ALIGN_LEFT, "Manejo:");
 	al_draw_text(fuente, al_map_rgb(0, 255, 0), 955, 130, ALLEGRO_ALIGN_LEFT, "A,W,S,D");
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 945, 180, ALLEGRO_ALIGN_LEFT, "Disparo:");
@@ -351,11 +351,11 @@ void dibujarcontroles(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarSalud(){
+void dibujarSalud() {
 	char saludCadena[10];
 	sprintf(saludCadena, "%.2f", personaje->salud);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 75, 25, ALLEGRO_ALIGN_CENTRE, "Salud:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 75, 55, ALLEGRO_ALIGN_CENTRE, saludCadena);
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 25, ALLEGRO_ALIGN_CENTRE, "Salud:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 55, ALLEGRO_ALIGN_CENTRE, saludCadena);
 	al_flip_display();
 }
 
@@ -363,11 +363,11 @@ void dibujarSalud(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarVelocidad(){
+void dibujarVelocidad() {
 	char velCadena[10];
 	sprintf(velCadena, "%.f", velocidad);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 75, 105, ALLEGRO_ALIGN_CENTRE, "Velocidad:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 75, 135, ALLEGRO_ALIGN_CENTRE, velCadena);
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 105, ALLEGRO_ALIGN_CENTRE, "Velocidad:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 135, ALLEGRO_ALIGN_CENTRE, velCadena);
 	al_flip_display();
 }
 
@@ -376,11 +376,11 @@ void dibujarVelocidad(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarVidas(){
+void dibujarVidas() {
 	char vidasCadena[10];
 	sprintf(vidasCadena, "%i", personaje->vidas);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 75, 185, ALLEGRO_ALIGN_CENTRE, "Vidas:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 75, 215, ALLEGRO_ALIGN_CENTRE, vidasCadena);
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 185, ALLEGRO_ALIGN_CENTRE, "Vidas:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 215, ALLEGRO_ALIGN_CENTRE, vidasCadena);
 	al_flip_display();
 }
 
@@ -389,7 +389,7 @@ void dibujarVidas(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarRectanguloJuego(){
+void dibujarRectanguloJuego() {
 	al_set_target_bitmap(al_get_backbuffer(pantalla));
 	al_draw_filled_rectangle(0, posicionRectanguloJuego, anchoPantalla, posicionRectanguloJuego + 5, al_map_rgb(0, 255, 0));
 	al_flip_display();
@@ -400,9 +400,9 @@ void dibujarRectanguloJuego(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: se evalúa si hay bonus activados en el array (valor diferente de NULL)
-void dibujarBonus(){
-	for (int i = 0; i < numeroBonus; i++){
-		if (bonus[i] != NULL){
+void dibujarBonus() {
+	for (int i = 0; i < numeroBonus; i++) {
+		if (bonus[i] != NULL) {
 			al_set_target_bitmap(al_get_backbuffer(pantalla));
 
 			if (bonus[i]->tipo == 0) al_draw_bitmap(bonusSalud, bonus[i]->x, bonus[i]->y, NULL);
@@ -420,11 +420,11 @@ void dibujarBonus(){
 //Entradas: eje x, eje y, dirección del personaje
 //Salidas: ninguna
 //Restricciones: se toma en cuenta si es dirección izquierda o derecha, por lo que se tomará la imagen correspondiente
-void dibujarPrincipal(int x, int y, int direccion){
+void dibujarPrincipal(int x, int y, int direccion) {
 
-	switch (direccion){
+	switch (direccion) {
 	case A: //en el caso de que la tela presionada sea la A, lo mueve a la izquierda
-		if (personaje->salud > 0 && personaje->salud <= 100){ // mientras que la salus del personaje este entre cero y cien, osea, que todavia tenga salud
+		if (personaje->salud > 0 && personaje->salud <= 100) { // mientras que la salus del personaje este entre cero y cien, osea, que todavia tenga salud
 			al_draw_bitmap(principalIzquierda, x, y, NULL); // diuja al personaje cambiando la posicion x,y
 			ultimo = principalIzquierda;
 		}
@@ -432,7 +432,7 @@ void dibujarPrincipal(int x, int y, int direccion){
 		break;
 
 	case D: // en elcaso de que la letra presionada sea la D, lo mueve a la derecha
-		if (personaje->salud > 0 && personaje->salud <= 100){
+		if (personaje->salud > 0 && personaje->salud <= 100) {
 			al_draw_bitmap(principalDerecha, x, y, NULL);
 			ultimo = principalDerecha;
 		}
@@ -454,11 +454,11 @@ void dibujarPrincipal(int x, int y, int direccion){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarcarretera(){
+void dibujarcarretera() {
 	al_set_target_bitmap(carretera);
 
 	al_set_target_bitmap(al_get_backbuffer(pantalla));
-	al_draw_bitmap(carretera, 300, 83, NULL);
+	al_draw_bitmap(carretera, 300, 0, NULL);
 	al_flip_display();
 
 }
@@ -467,10 +467,10 @@ void dibujarcarretera(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarEnemigoTriangulo(){
-	for (int i = 0; i < numeroEnemigosTriangulo; i++){
+void dibujarEnemigoTriangulo() {
+	for (int i = 0; i < numeroEnemigosTriangulo; i++) {
 
-		if (enemigosTriangulo[i] != NULL){
+		if (enemigosTriangulo[i] != NULL) {
 			al_set_target_bitmap(enemigoTrianguloBuffer);
 			al_draw_bitmap_region(enemigoTriangulo, enemigosTriangulo[i]->sprite * 100, 0, 100, 100, 0, 0, NULL);
 			al_set_target_bitmap(al_get_backbuffer(pantalla));
@@ -485,9 +485,9 @@ void dibujarEnemigoTriangulo(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: se evalúa si la bala está activada (valor diferente de NULL)
-void dibujarBalasEnemigoTriangulo(){
-	for (int i = 0; i < numeroBalasEnemigo; i++){
-		if (balasEnemigo[i] != NULL){
+void dibujarBalasEnemigoTriangulo() {
+	for (int i = 0; i < numeroBalasEnemigo; i++) {
+		if (balasEnemigo[i] != NULL) {
 			al_set_target_bitmap(al_get_backbuffer(pantalla));
 			al_draw_bitmap(balaEnemigo, balasEnemigo[i]->x, balasEnemigo[i]->y, NULL);
 			al_flip_display();
@@ -500,10 +500,10 @@ void dibujarBalasEnemigoTriangulo(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: se evaluará si hay una estructura bala en el array disponible (que no tenga valor NULL)
-void dibujarBalasPersonaje(){
-	for (int i = 0; i < numeroBalasPersonaje; i++){
+void dibujarBalasPersonaje() {
+	for (int i = 0; i < numeroBalasPersonaje; i++) {
 
-		if (balasPersonaje[i] != NULL){
+		if (balasPersonaje[i] != NULL) {
 
 			al_set_target_bitmap(al_get_backbuffer(pantalla));
 			if (balasPersonaje[i]->orientacion == W || balasPersonaje[i]->orientacion == S)
@@ -524,10 +524,10 @@ void dibujarBalasPersonaje(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void dibujarMejoresPuntajes(){
+void dibujarMejoresPuntajes() {
 	char puntajeCadena[10];
 	char posicionCadena[10];
-	for (int i = 0; i < mejoresPuntajesJuego; i++){
+	for (int i = 0; i < mejoresPuntajesJuego; i++) {
 		sprintf(puntajeCadena, "%i", mejoresPuntajes[i]);
 		sprintf(posicionCadena, "%i", i + 1);
 
@@ -544,7 +544,7 @@ void dibujarMejoresPuntajes(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void limpiarPantalla(){
+void limpiarPantalla() {
 	al_clear_to_color(transparente);
 }
 
@@ -553,8 +553,8 @@ void limpiarPantalla(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void limpiarPuntajes(){
-	for (int i = 0; i < mejoresPuntajesJuego; i++){
+void limpiarPuntajes() {
+	for (int i = 0; i < mejoresPuntajesJuego; i++) {
 		mejoresPuntajes[i] = 0;
 	}
 }
@@ -564,7 +564,7 @@ void limpiarPuntajes(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void guardarPuntajes(){
+void guardarPuntajes() {
 	documento = fopen("Puntajes.txt", "a");
 	fprintf(documento, "%i \n", puntaje);
 	fclose(documento);
@@ -576,16 +576,16 @@ void guardarPuntajes(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void cargarPuntajes(){
+void cargarPuntajes() {
 	char puntajeTxt[10];
 	int punt;
 	int aux;
 	documento = fopen("Puntajes.txt", "r");
-	while (!feof(documento)){
+	while (!feof(documento)) {
 		fgets(puntajeTxt, 10, documento);
 		punt = atoi(puntajeTxt);
-		for (int i = 0; i < mejoresPuntajesJuego; i++){
-			if (punt >= mejoresPuntajes[i]){
+		for (int i = 0; i < mejoresPuntajesJuego; i++) {
+			if (punt >= mejoresPuntajes[i]) {
 				aux = mejoresPuntajes[i];
 				mejoresPuntajes[i] = punt;
 				punt = aux;
@@ -600,15 +600,15 @@ void cargarPuntajes(){
 //Entradas: el valor que se sumará
 //Salidas: ninguna
 //Restricciones: ninguna
-void sumarPuntaje(int suma){
+void sumarPuntaje(int suma) {
 	puntaje += suma;
 }
 
-void restargas(int resta){
+void restargas(int resta) {
 	gas -= resta;
 }
 
-void sumargasusado(int suma){
+void sumargasusado(int suma) {
 	gasusado += suma;
 }
 
@@ -617,7 +617,7 @@ void sumargasusado(int suma){
 //Entradas: el valor que se le suma a la salud
 //Salidas: ninguna
 //Restricciones: si la suma es mayor a 100.0, se le asigna 100.0 a la salud
-void sumarSalud(float salud){
+void sumarSalud(float salud) {
 	personaje->salud += salud;
 	if (personaje->salud > 100.0) personaje->salud = 100.0;
 }
@@ -627,7 +627,7 @@ void sumarSalud(float salud){
 //Entradas: vida que se suma
 //Salidas: ninguna
 //Restricciones: ninguna
-void sumarVida(int vida){
+void sumarVida(int vida) {
 	personaje->vidas += vida;
 }
 
@@ -636,7 +636,7 @@ void sumarVida(int vida){
 //Entradas: el daño que se restará a la salud
 //Salidas: ninguna
 //Restricciones: ninguna
-void restarSalud(float danno){
+void restarSalud(float danno) {
 	personaje->salud -= danno;
 }
 
@@ -645,7 +645,7 @@ void restarSalud(float danno){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void restarVidas(){
+void restarVidas() {
 	personaje->vidas -= 1;
 }
 
@@ -654,7 +654,7 @@ void restarVidas(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void restaurarSalud(){
+void restaurarSalud() {
 	personaje->salud = 100.0;
 }
 
@@ -663,7 +663,7 @@ void restaurarSalud(){
 //Entradas: ninguna
 //Salidas: true, si no tiene salud false: si aún tiene salud
 //Restricciones: se evalúa si la salud es menor o igual a 0
-bool sinSalud(){
+bool sinSalud() {
 	if (personaje->salud <= 0.0) return true;
 
 	else return false;
@@ -674,7 +674,7 @@ bool sinSalud(){
 //Entradas: ninguna
 //Salidas: true: si aún posee vidas false: si no posee vidas
 //Restricciones: se evalúa si la cantidad de vidas es igual a 0
-bool sinVidas(){
+bool sinVidas() {
 	if (personaje->vidas == 0) return true;
 	else return false;
 }
@@ -687,18 +687,18 @@ para estar lanzando al azar sus balas, en este caso, los autos rojos que avanzan
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: si el sumarSprite es 0, se suma en uno el sprite del enemigo triángulo
-void cambiarSpriteEnemigoTriangulo(){
+void cambiarSpriteEnemigoTriangulo() {
 
-	for (int i = 0; i < numeroEnemigosTriangulo; i++){
+	for (int i = 0; i < numeroEnemigosTriangulo; i++) {
 
-		if (enemigosTriangulo[i] != NULL){
+		if (enemigosTriangulo[i] != NULL) {
 
 			if (enemigosTriangulo[i]->sprite == 1) enemigosTriangulo[i]->sumando = false;
 
 			if (enemigosTriangulo[i]->sprite == 0) enemigosTriangulo[i]->sumando = true;
 
-			if (enemigosTriangulo[i]->sumando){
-				if (enemigosTriangulo[i]->sumarSprite == 0){
+			if (enemigosTriangulo[i]->sumando) {
+				if (enemigosTriangulo[i]->sumarSprite == 0) {
 					enemigosTriangulo[i]->sprite += 1;
 					enemigosTriangulo[i]->sumarSprite = 30;
 				}
@@ -706,8 +706,8 @@ void cambiarSpriteEnemigoTriangulo(){
 				else enemigosTriangulo[i]->sumarSprite -= 1;
 			}
 
-			if (!enemigosTriangulo[i]->sumando){
-				if (enemigosTriangulo[i]->sumarSprite == 0){
+			if (!enemigosTriangulo[i]->sumando) {
+				if (enemigosTriangulo[i]->sumarSprite == 0) {
 					enemigosTriangulo[i]->sprite -= 1;
 					enemigosTriangulo[i]->sumarSprite = 30;
 				}
@@ -724,12 +724,12 @@ void cambiarSpriteEnemigoTriangulo(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: se evalúa si se posee espacio en el array (valor NULL)
-void generarBonus(){
+void generarBonus() {
 	int x;
 	int y;
 
-	for (int i = 0; i < numeroBonus; i++){
-		if (bonus[i] == NULL){
+	for (int i = 0; i < numeroBonus; i++) {
+		if (bonus[i] == NULL) {
 			x = 33 + 0;
 			y = rand() % 6 + 7;
 			bonus[i] = new Bonus(x * 10, y * 40, i % 2, saludBonus);
@@ -745,9 +745,9 @@ void generarBonus(){
 //Entradas: eje x, eje y
 //Salidas: ninguna
 //Restricciones: se evalúa si hay un valor desactivado (NULL) para asignar la bala
-void crearBalaEnemigoTriangulo(int x, int y){
-	for (int i = 0; i < numeroBalasEnemigo; i++){
-		if (balasEnemigo[i] == NULL){
+void crearBalaEnemigoTriangulo(int x, int y) {
+	for (int i = 0; i < numeroBalasEnemigo; i++) {
+		if (balasEnemigo[i] == NULL) {
 			balasEnemigo[i] = new BalaEnemigo(x, y, dannoBalaEnemigo);
 			break;
 		}
@@ -759,9 +759,9 @@ void crearBalaEnemigoTriangulo(int x, int y){
 //Entradas: posición del array que se liberará
 //Salidas: ninguna
 //Restricciones: ninguna
-void desactivarturboPersonaje(float turb){
+void desactivarturboPersonaje(float turb) {
 
-	if (turb == true){
+	if (turb == true) {
 		//cambiovelocidad();
 		turb = false;
 	}
@@ -772,7 +772,7 @@ void desactivarturboPersonaje(float turb){
 //Entradas: la posición del array que se elimina
 //Salidas: ninguna
 //Restricciones: ninguna
-void desactivarBonus(int posicion){
+void desactivarBonus(int posicion) {
 	bonus[posicion] = NULL;
 }
 
@@ -781,7 +781,7 @@ void desactivarBonus(int posicion){
 //Entradas: posición
 //Salidas: ninguna
 //Restricciones: ninguna
-void desactivarBalaEnemigoTriangulo(int posicion){
+void desactivarBalaEnemigoTriangulo(int posicion) {
 
 	balasEnemigo[posicion] = NULL;
 }
@@ -790,7 +790,7 @@ void desactivarBalaEnemigoTriangulo(int posicion){
 //Entradas: posición del array que se liberará
 //Salidas: ninguna
 //Restricciones: ninguna
-void desactivarBalaPersonaje(int posicion){
+void desactivarBalaPersonaje(int posicion) {
 
 	balasPersonaje[posicion] = NULL;
 }
@@ -799,8 +799,8 @@ void desactivarBalaPersonaje(int posicion){
 //Entradas: la dirección (UP, DOWN, LEFT, RIGHT)
 //Salidas: ninguna
 //Restricciones: se evalúa si una tecla fue activada
-void turboPersonaje(float direccion){
-	if (direccion == true){
+void turboPersonaje(float direccion) {
+	if (direccion == true) {
 		//cambiovelocidad(15);
 		int a = 1;
 	}
@@ -810,12 +810,12 @@ void turboPersonaje(float direccion){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: se evalúa que haya enemigos activados (diferente de NULL), se evalúa si se cumple el rango para lanzar la bala
-void dispararEnemigoTriangulo(){
-	for (int i = 0; i < numeroEnemigosTriangulo; i++){
+void dispararEnemigoTriangulo() {
+	for (int i = 0; i < numeroEnemigosTriangulo; i++) {
 
-		if (enemigosTriangulo[i] != NULL){
+		if (enemigosTriangulo[i] != NULL) {
 
-			if (abs(enemigosTriangulo[i]->x - personaje->x) == 50){
+			if (abs(enemigosTriangulo[i]->x - personaje->x) == 50) {
 				crearBalaEnemigoTriangulo(enemigosTriangulo[i]->x, enemigosTriangulo[i]->y);
 				reproducirDisparoEnemigo();
 				numenemigos++;
@@ -829,7 +829,7 @@ void dispararEnemigoTriangulo(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void reproducirDisparoPersonaje(){
+void reproducirDisparoPersonaje() {
 	instanciaSonido = al_create_sample_instance(disparoPersonaje);
 	al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
 	al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
@@ -840,12 +840,12 @@ void reproducirDisparoPersonaje(){
 //Entradas: la dirección (UP, DOWN, LEFT, RIGHT)
 //Salidas: ninguna
 //Restricciones: se evalúa si existe algún espacio disponible en el array (o sea, si es NULL)
-void dispararPersonaje(int direccion){
-	if (direccion == S || direccion == W || direccion == D || direccion == A){
+void dispararPersonaje(int direccion) {
+	if (direccion == S || direccion == W || direccion == D || direccion == A) {
 
-		for (int i = 0; i < numeroBalasPersonaje; i++){
+		for (int i = 0; i < numeroBalasPersonaje; i++) {
 
-			if (balasPersonaje[i] == NULL){
+			if (balasPersonaje[i] == NULL) {
 				balasPersonaje[i] = new BalaPersonaje(personaje->x, personaje->y, direccion);
 				reproducirDisparoPersonaje();
 				balasdisp++;
@@ -863,17 +863,17 @@ void dispararPersonaje(int direccion){
 //Entradas: movimiento (lo que se le suma a los ejes), tiempo (si es segundo o tercer timer)
 //Salidas: ninguna
 //Restricciones: se evalúa si el enemigo está al punto mínimo o máximo del eje x, para así cambiar el rumbo//<770 >300
-void moverEnemigoTriangulo(int movimiento, int tiempo){
-	for (int i = 0; i < numeroEnemigosTriangulo; i++){
+void moverEnemigoTriangulo(int movimiento, int tiempo) {
+	for (int i = 0; i < numeroEnemigosTriangulo; i++) {
 
-		if (enemigosTriangulo[i]->tiempo == tiempo){
+		if (enemigosTriangulo[i]->tiempo == tiempo) {
 
-			if (enemigosTriangulo[i]->direccion == A){
+			if (enemigosTriangulo[i]->direccion == A) {
 				if (enemigosTriangulo[i]->x == 300) enemigosTriangulo[i]->direccion = D;
 				else enemigosTriangulo[i]->x -= movimiento;
 			}
 
-			if (enemigosTriangulo[i]->direccion == D){
+			if (enemigosTriangulo[i]->direccion == D) {
 				if (enemigosTriangulo[i]->x == (770)) enemigosTriangulo[i]->direccion = A;
 				else enemigosTriangulo[i]->x += movimiento;
 			}
@@ -886,17 +886,17 @@ void moverEnemigoTriangulo(int movimiento, int tiempo){
 //Entradas: movimiento (lo que se le suma a los ejes)
 //Salidas: ninguna
 //Restricciones: ninguna
-void moverPersonaje(int movimiento){
-	if (teclasDireccion[S]){
+void moverPersonaje(int movimiento) {
+	if (teclasDireccion[S]) {
 		if (personaje->y < 500) personaje->y += movimiento;
 	}
-	if (teclasDireccion[W]){
+	if (teclasDireccion[W]) {
 		if (personaje->y > posicionRectanguloJuego + 10) personaje->y -= movimiento;
 	}
-	if (teclasDireccion[D]){
+	if (teclasDireccion[D]) {
 		if (personaje->x < (770)) personaje->x += movimiento;
 	}
-	if (teclasDireccion[A]){
+	if (teclasDireccion[A]) {
 		if (personaje->x > 300) personaje->x -= movimiento;
 	}
 }
@@ -905,12 +905,12 @@ void moverPersonaje(int movimiento){
 //Entradas: movimiento (para saber si se suma o resta velocidad)
 //Salidas: ninguna
 //Restricciones: ninguna
-void cambiovelocidad(int movimiento){
-	if (teclasDireccion[S]){ // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionda
-		velocidad-=2;
+void cambiovelocidad(int movimiento) {
+	if (teclasDireccion[S]) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionda
+		velocidad -= 2;
 	}
-	if (teclasDireccion[W]){// si se presiona la letra W se le va a empezar a sumar velocidad cada vez que se presione o si se mantiene presionda
-		velocidad+=2;
+	if (teclasDireccion[W]) {// si se presiona la letra W se le va a empezar a sumar velocidad cada vez que se presione o si se mantiene presionda
+		velocidad += 2;
 	}
 }
 
@@ -919,27 +919,27 @@ void cambiovelocidad(int movimiento){
 //Entradas: movimiento (valor que se sumará a los ejes)
 //Salidas: ninguna
 //Restricciones: se evalúa si hay alguna bala acticava, además de llamar a la función para desactivarla si llega a los ejes límite
-void moverBalaPersonaje(int movimiento){
-	for (int i = 0; i < numeroBalasPersonaje; i++){
+void moverBalaPersonaje(int movimiento) {
+	for (int i = 0; i < numeroBalasPersonaje; i++) {
 
-		if (balasPersonaje[i] != NULL){
+		if (balasPersonaje[i] != NULL) {
 
-			if (balasPersonaje[i]->orientacion == S){
+			if (balasPersonaje[i]->orientacion == S) {
 				if (balasPersonaje[i]->y == (largoPantalla - 30)) desactivarBalaPersonaje(i);
 				else balasPersonaje[i]->y += movimiento;
 			}
 
-			else if (balasPersonaje[i]->orientacion == W){
+			else if (balasPersonaje[i]->orientacion == W) {
 				if (balasPersonaje[i]->y == 60) desactivarBalaPersonaje(i);
 				else balasPersonaje[i]->y -= movimiento;
 			}
 
-			else if (balasPersonaje[i]->orientacion == D){
+			else if (balasPersonaje[i]->orientacion == D) {
 				if (balasPersonaje[i]->x == (anchoPantalla - 30)) desactivarBalaPersonaje(i);
 				else balasPersonaje[i]->x += movimiento;
 			}
 
-			else if (balasPersonaje[i]->orientacion == A){
+			else if (balasPersonaje[i]->orientacion == A) {
 				if (balasPersonaje[i]->x == 0) desactivarBalaPersonaje(i);
 				else balasPersonaje[i]->x -= movimiento;
 			}
@@ -953,9 +953,9 @@ void moverBalaPersonaje(int movimiento){
 //Entradas: movimiento (valor que se suma a los ejes)
 //Salidas: ninguna
 //Restricciones: se evalúa si hay balas activadas (diferente de NULL), se evalúa si las balas están fuera del rango
-void moverBalaEnemigoTriangulo(int movimiento){
-	for (int i = 0; i < numeroBalasEnemigo; i++){
-		if (balasEnemigo[i] != NULL){
+void moverBalaEnemigoTriangulo(int movimiento) {
+	for (int i = 0; i < numeroBalasEnemigo; i++) {
+		if (balasEnemigo[i] != NULL) {
 			if (balasEnemigo[i]->y == (largoPantalla - 30)) desactivarBalaEnemigoTriangulo(i);
 			else balasEnemigo[i]->y += movimiento;
 		}
@@ -967,11 +967,11 @@ void moverBalaEnemigoTriangulo(int movimiento){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: se evalúa si hay balas activadas (diferente de NULL)
-void colisionBalaEnemigoTriangulo(){
-	for (int i = 0; i < numeroBalasEnemigo; i++){
+void colisionBalaEnemigoTriangulo() {
+	for (int i = 0; i < numeroBalasEnemigo; i++) {
 
-		if (balasEnemigo[i] != NULL){
-			if ((personaje->x - 15 < balasEnemigo[i]->x && balasEnemigo[i]->x < personaje->x + 15) && (personaje->y - 15 < balasEnemigo[i]->y && balasEnemigo[i]->y < personaje->y + 15)){
+		if (balasEnemigo[i] != NULL) {
+			if ((personaje->x - 15 < balasEnemigo[i]->x && balasEnemigo[i]->x < personaje->x + 15) && (personaje->y - 15 < balasEnemigo[i]->y && balasEnemigo[i]->y < personaje->y + 15)) {
 				restarSalud(balasEnemigo[i]->danno);
 				desactivarBalaEnemigoTriangulo(i);
 			}
@@ -983,18 +983,18 @@ void colisionBalaEnemigoTriangulo(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: se evalúa si hay balas activadas (diferente de NULL)
-void colisionBalaconBala(){
-	for (int i = 0; i < numeroBalasEnemigo; i++){
+void colisionBalaconBala() {
+	for (int i = 0; i < numeroBalasEnemigo; i++) {
 
-		if (balasEnemigo[i] != NULL && balasPersonaje[i] != NULL){
-			if ((balasPersonaje[i]->x - 50 < balasEnemigo[i]->x && balasEnemigo[i]->x < balasPersonaje[i]->x + 50) && (balasPersonaje[i]->y - 50 < balasEnemigo[i]->y && balasEnemigo[i]->y < balasPersonaje[i]->y + 50)){
+		if (balasEnemigo[i] != NULL && balasPersonaje[i] != NULL) {
+			if ((balasPersonaje[i]->x - 50 < balasEnemigo[i]->x && balasEnemigo[i]->x < balasPersonaje[i]->x + 50) && (balasPersonaje[i]->y - 50 < balasEnemigo[i]->y && balasEnemigo[i]->y < balasPersonaje[i]->y + 50)) {
 				desactivarBalaEnemigoTriangulo(i);
 				enemigosel++;
 				balasperdidas--;
 				sumarPuntaje(10);
 			}
 		}
-		
+
 	}
 }
 
@@ -1004,19 +1004,19 @@ void colisionBalaconBala(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: se evalúa si hay bonus activados (diferente de NULL)
-void colisionBonus(){
-	for (int i = 0; i < numeroBonus; i++){
-		if (bonus[i] != NULL){
-			if ((personaje->x - 30 < bonus[i]->x  &&  bonus[i]->x < personaje->x + 30) && (personaje->y - 30 < bonus[i]->y && bonus[i]->y < personaje->y + 30)){
+void colisionBonus() {
+	for (int i = 0; i < numeroBonus; i++) {
+		if (bonus[i] != NULL) {
+			if ((personaje->x - 30 < bonus[i]->x  &&  bonus[i]->x < personaje->x + 30) && (personaje->y - 30 < bonus[i]->y && bonus[i]->y < personaje->y + 30)) {
 
-				if (bonus[i]->tipo == 0){
+				if (bonus[i]->tipo == 0) {
 					sumarSalud(bonus[i]->salud);
 					sumarPuntaje(sumaPuntajeBonusSalud);
 					bonusop++;
 					bonusperdidos--;
 				}
 
-				else if (bonus[i]->tipo == 1){
+				else if (bonus[i]->tipo == 1) {
 					sumarVida(1);
 					sumarPuntaje(sumaPuntajeBonusVida);
 					bonusop++;
@@ -1035,8 +1035,8 @@ void colisionBonus(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void iniciarPuntajes(){
-	for (int i = 0; i < mejoresPuntajesJuego; i++){
+void iniciarPuntajes() {
+	for (int i = 0; i < mejoresPuntajesJuego; i++) {
 		mejoresPuntajes[i] = 0;
 	}
 }
@@ -1046,7 +1046,7 @@ void iniciarPuntajes(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void iniciarPersonaje(){
+void iniciarPersonaje() {
 	personaje = new PersonajePrincipal(300, 500, 3, 100.0);
 }
 
@@ -1055,10 +1055,10 @@ void iniciarPersonaje(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void iniciarEnemigosTriangulo(){
+void iniciarEnemigosTriangulo() {
 	int x;
 
-	for (int i = 0; i < numeroEnemigosTriangulo; i++){
+	for (int i = 0; i < numeroEnemigosTriangulo; i++) {
 		x = rand() % 31 + 5;
 		enemigosTriangulo[i] = new EnemigoTriangulo(300, 0, (i % 2 + 2), i + 1, 0, dannoEnemigoTriangulo);
 	}
@@ -1070,8 +1070,8 @@ void iniciarEnemigosTriangulo(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void iniciarBalasPersonaje(){
-	for (int i = 0; i < numeroBalasPersonaje; i++){
+void iniciarBalasPersonaje() {
+	for (int i = 0; i < numeroBalasPersonaje; i++) {
 		balasPersonaje[i] = NULL;
 	}
 }
@@ -1081,8 +1081,8 @@ void iniciarBalasPersonaje(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void iniciarBalasEnemigo(){
-	for (int i = 0; i < numeroBalasEnemigo; i++){
+void iniciarBalasEnemigo() {
+	for (int i = 0; i < numeroBalasEnemigo; i++) {
 		balasEnemigo[i] = NULL;
 	}
 }
@@ -1092,14 +1092,14 @@ void iniciarBalasEnemigo(){
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void iniciarBonus(){
-	for (int i = 0; i < numeroBonus; i++){
+void iniciarBonus() {
+	for (int i = 0; i < numeroBonus; i++) {
 		bonus[i] = NULL;
 	}
 }
 
 
-int main(int argc, char **argv){
+int main(int argc, char **argv) {
 
 
 
@@ -1206,29 +1206,29 @@ int main(int argc, char **argv){
 	iniciarPuntajes();
 
 	// menu inicial
-	while (menu){
+	while (menu) {
 		al_wait_for_event(colaEventoMenu, &eventoMenu);
 
-		if (eventoMenu.type = ALLEGRO_EVENT_KEY_DOWN){
+		if (eventoMenu.type = ALLEGRO_EVENT_KEY_DOWN) {
 
-			if (eventoMenu.keyboard.keycode == ALLEGRO_KEY_1){
+			if (eventoMenu.keyboard.keycode == ALLEGRO_KEY_1) {
 				hecho = true;
 				menu = false;
 			}
 
-			else if (eventoMenu.keyboard.keycode == ALLEGRO_KEY_2){
+			else if (eventoMenu.keyboard.keycode == ALLEGRO_KEY_2) {
 				limpiarPantalla();
 				cargarPuntajes();
 				dibujarMejoresPuntajes();
 				limpiarPuntajes();
 			}
 
-			else if (eventoMenu.keyboard.keycode == ALLEGRO_KEY_3){
+			else if (eventoMenu.keyboard.keycode == ALLEGRO_KEY_3) {
 				hecho = false;
 				menu = false;
 			}
 
-			else if (eventoMenu.keyboard.keycode == ALLEGRO_KEY_S){
+			else if (eventoMenu.keyboard.keycode == ALLEGRO_KEY_S) {
 				limpiarPantalla();
 				dibujarMenu();
 			}
@@ -1287,7 +1287,7 @@ int main(int argc, char **argv){
 	//**********************************************************
 
 
-	while (hecho){
+	while (hecho) {
 
 		ALLEGRO_EVENT eventos;
 
@@ -1298,8 +1298,8 @@ int main(int argc, char **argv){
 		Observación: Si se presiona una segunda tecla, al mismo tiempo que se está presionando la primera, este evento será capaz de detectar las dos teclas
 		y representarlas en el array de activación (teclas)
 		*/
-		if (eventos.type == ALLEGRO_EVENT_KEY_DOWN){
-			switch (eventos.keyboard.keycode){
+		if (eventos.type == ALLEGRO_EVENT_KEY_DOWN) {
+			switch (eventos.keyboard.keycode) {
 
 			case ALLEGRO_KEY_S:
 				teclasDireccion[S] = true;
@@ -1348,8 +1348,8 @@ int main(int argc, char **argv){
 		/*Evento que toma en cuenta cuando se deja de presionar alguna tecla, funciona de la misma forma que el evento anterior, cuando se deja de presionar una
 		tecla, se desactiva del array de activación (teclas)
 		*/
-		if (eventos.type == ALLEGRO_EVENT_KEY_UP){
-			switch (eventos.keyboard.keycode){
+		if (eventos.type == ALLEGRO_EVENT_KEY_UP) {
+			switch (eventos.keyboard.keycode) {
 
 			case ALLEGRO_KEY_S:
 				teclasDireccion[S] = false;
@@ -1378,24 +1378,24 @@ int main(int argc, char **argv){
 
 		//condicional que analiza los timers y llama a distintas funciones
 
-		if (eventos.type == ALLEGRO_EVENT_TIMER){
-			if (eventos.timer.source == primerTimer){
+		if (eventos.type == ALLEGRO_EVENT_TIMER) {
+			if (eventos.timer.source == primerTimer) {
 				moverPersonaje(movimiento);
 				cambiovelocidad(movimiento);
 
 			}
 
-			else if (eventos.timer.source == segundoTimer){
+			else if (eventos.timer.source == segundoTimer) {
 				moverEnemigoTriangulo(movimiento, 1);
 			}
 
-			else if (eventos.timer.source == tercerTimer){
+			else if (eventos.timer.source == tercerTimer) {
 				moverEnemigoTriangulo(movimiento, 2);
 
 			}
 
-			else if (eventos.timer.source == cuartoTimer){
-				for (int s = 0; s < 2; s++){
+			else if (eventos.timer.source == cuartoTimer) {
+				for (int s = 0; s < 2; s++) {
 					turboPersonaje(turb);
 				}
 				dispararPersonaje(disparo);
@@ -1403,24 +1403,24 @@ int main(int argc, char **argv){
 				moverBalaPersonaje(movimiento);
 				dispararEnemigoTriangulo();
 				moverBalaEnemigoTriangulo(movimiento);
-				if (turb == true){
-					for (int j = 0; j < 1; j++){
+				if (turb == true) {
+					for (int j = 0; j < 1; j++) {
 						desactivarturboPersonaje(turb);
 					}
 				}
 			}
 
-			else if (eventos.timer.source == quintoTimer){
+			else if (eventos.timer.source == quintoTimer) {
 				sumarPuntaje(sumaPuntajeTimer);
 				restargas(restagastimer);
 				sumargasusado(sumagasusadotimer);
 			}
 
-			else if (eventos.timer.source == sextoTimer){
+			else if (eventos.timer.source == sextoTimer) {
 				generarBonus();
 			}
 
-			else if (eventos.timer.source == septimoTimer){
+			else if (eventos.timer.source == septimoTimer) {
 				dibujarcarretera();
 				dibujarPrincipal(personaje->x, personaje->y, direccion);
 				dibujarEnemigoTriangulo();
@@ -1430,7 +1430,7 @@ int main(int argc, char **argv){
 				//dibujarRectanguloJuego();
 				dibujarPuntaje();
 				dibujargas();
-				dibujargasusado();
+				//dibujargasusado();
 				dibujarSalud();
 				dibujarVidas();
 				dibujarVelocidad();
@@ -1445,7 +1445,7 @@ int main(int argc, char **argv){
 
 			}
 
-			else if (eventos.timer.source == octavoTimer){
+			else if (eventos.timer.source == octavoTimer) {
 				moverEnemigoTriangulo(movimiento, 3);
 			}
 
@@ -1458,17 +1458,17 @@ int main(int argc, char **argv){
 		colisionBalaconBala();
 		colisionBonus();
 
-		if (sinSalud()){
+		if (sinSalud()) {
 			restarVidas();
 			restaurarSalud();
 		}
 
-		if (sinVidas()){
+		if (sinVidas()) {
 			hecho = false;
 			guardarPuntajes();
 		}
 
-		if (gas == 0){
+		if (gas == 0) {
 			hecho = false;
 			guardarPuntajes();
 		}
@@ -1517,8 +1517,6 @@ int main(int argc, char **argv){
 	al_destroy_timer(sextoTimer);
 	al_destroy_timer(septimoTimer);
 	al_destroy_timer(octavoTimer);
-
-	al_destroy_font(fuente);
 
 	return 0;
 }
