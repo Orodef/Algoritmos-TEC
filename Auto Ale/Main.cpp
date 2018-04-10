@@ -910,6 +910,27 @@ void moverPersonaje(int movimiento) {
 		if (personaje->x > 300) personaje->x -= movimiento;
 	}
 }
+//cambiar marcha: función encargada de cambiar la marcha
+//Entradas: velocidad, para determinar la marcha
+//Salidas: ninguna
+//Restricciones: ninguna
+void cambioMarcha(int velocidad) {
+	if (velocidad > 1 && velocidad < 60) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
+		marcha = 1;
+	}
+	if (velocidad > 60 && velocidad < 120) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
+		marcha = 2;
+	}
+	if (velocidad > 120 && velocidad < 180) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
+		marcha = 3;
+	}
+	if (velocidad > 180 && velocidad < 240) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
+		marcha = 4;
+	}
+	if (velocidad > 240 && velocidad < 300) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
+		marcha = 5;
+	}
+}
 
 //cambiar velocidad: función encargada de cambiar la velocidad del personaje principal
 //Entradas: movimiento (para saber si se suma o resta velocidad)
@@ -922,8 +943,8 @@ void cambiovelocidad(int movimiento) {
 	if (teclasDireccion[W] && velocidad < 299){// si se presiona la letra W se le va a empezar a sumar velocidad cada vez que se presione o si se mantiene presionda
 		velocidad += 2;
 	}
+	cambioMarcha(velocidad);
 }
-
 
 //moverBalaPersonaje: función encargada de cambiar el valor de los ejes de las balas disponibles en el array
 //Entradas: movimiento (valor que se sumará a los ejes)
