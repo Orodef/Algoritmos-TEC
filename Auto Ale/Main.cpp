@@ -214,8 +214,8 @@ void dibujarMenu() {
 void dibujarPuntaje() {
 	char puntajeCadena[10];
 	sprintf(puntajeCadena, "%i""%", puntaje);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 400, ALLEGRO_ALIGN_CENTRE, "Puntaje:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 430, ALLEGRO_ALIGN_CENTRE, puntajeCadena);
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 500, ALLEGRO_ALIGN_CENTRE, "Puntaje:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 530, ALLEGRO_ALIGN_CENTRE, puntajeCadena);
 	al_flip_display();
 }
 
@@ -226,8 +226,8 @@ void dibujarPuntaje() {
 void dibujargas() {
 	char gasCadena[10];
 	sprintf(gasCadena, "%i""%", gas);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 265, ALLEGRO_ALIGN_CENTRE, "Gas:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 295, ALLEGRO_ALIGN_CENTRE, gasCadena);
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 315, ALLEGRO_ALIGN_CENTRE, "Gas:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 345, ALLEGRO_ALIGN_CENTRE, gasCadena);
 	al_flip_display();
 }
 
@@ -359,18 +359,29 @@ void dibujarSalud() {
 	al_flip_display();
 }
 
-//dibujarVelocidad: función encargada de dibujar en pantalla el la velovidad
+//dibujarVelocidad: función encargada de dibujar en pantalla la velocidad
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
 void dibujarVelocidad() {
 	char velCadena[10];
 	sprintf(velCadena, "%.f", velocidad);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 105, ALLEGRO_ALIGN_CENTRE, "Velocidad:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 135, ALLEGRO_ALIGN_CENTRE, velCadena);
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 185, ALLEGRO_ALIGN_CENTRE, "Velocidad:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 215, ALLEGRO_ALIGN_CENTRE, velCadena);
 	al_flip_display();
 }
 
+//dibujarMarcha: función encargada de dibujar en pantalla el la velovidad
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: ninguna
+void dibujarMarcha() {
+	char marCadena[10];
+	sprintf(marCadena, "%.i", marcha);
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 265, ALLEGRO_ALIGN_CENTRE, "Velocidad:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 295, ALLEGRO_ALIGN_CENTRE, marCadena);
+	al_flip_display();
+}
 
 //dibujarVidas: función encargada de dibujar en pantalla las vidas actuales
 //Entradas: ninguna
@@ -379,8 +390,8 @@ void dibujarVelocidad() {
 void dibujarVidas() {
 	char vidasCadena[10];
 	sprintf(vidasCadena, "%i", personaje->vidas);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 185, ALLEGRO_ALIGN_CENTRE, "Vidas:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 215, ALLEGRO_ALIGN_CENTRE, vidasCadena);
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 105, ALLEGRO_ALIGN_CENTRE, "Vidas:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 135, ALLEGRO_ALIGN_CENTRE, vidasCadena);
 	al_flip_display();
 }
 
