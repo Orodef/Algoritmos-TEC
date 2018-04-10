@@ -226,8 +226,8 @@ void dibujarPuntaje(){
 void dibujargas(){
 	char gasCadena[10];
 	sprintf(gasCadena, "%i""%", gas);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 480, 25, ALLEGRO_ALIGN_LEFT, "Gas:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 530, 25, ALLEGRO_ALIGN_LEFT, gasCadena);
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 75, 265, ALLEGRO_ALIGN_LEFT, "Gas:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 75, 295, ALLEGRO_ALIGN_LEFT, gasCadena);
 	al_flip_display();
 }
 
