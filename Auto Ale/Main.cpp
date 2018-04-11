@@ -138,6 +138,7 @@ ALLEGRO_SAMPLE *musicaJuego;
 ALLEGRO_SAMPLE *disparoPersonaje;
 ALLEGRO_SAMPLE *turbPersonaje;
 ALLEGRO_SAMPLE *disparoEnemigo;
+ALLEGRO_SAMPLE *marchaCambia;
 ALLEGRO_SAMPLE *colisionEnemigo;
 
 ALLEGRO_SAMPLE_INSTANCE *instanciaSonido;
@@ -846,6 +847,17 @@ void reproducirDisparoPersonaje() {
 	al_play_sample_instance(instanciaSonido);
 }
 
+//reproducirCambioMarcha: función encargada de reproducir el sonido para el disparo del personaje
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: ninguna
+void reproducirCambioMarcha(){
+	instanciaSonido = al_create_sample_instance(marchaCambia);
+	al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
+	al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
+	al_play_sample_instance(instanciaSonido);
+}
+
 //dispararPersonaje: función encargada de crear nuevas balas
 //Entradas: la dirección (UP, DOWN, LEFT, RIGHT)
 //Salidas: ninguna
@@ -914,7 +926,9 @@ void moverPersonaje(int movimiento) {
 //Entradas: velocidad, para determinar la marcha
 //Salidas: ninguna
 //Restricciones: ninguna
-void cambioMarcha(int velocidad) {
+void cambioMarcha() {
+	bool cambia = false;
+	int marchaN = marcha;
 	if (velocidad > 1 && velocidad < 60) { 
 		marcha = 1;
 	}
@@ -930,6 +944,10 @@ void cambioMarcha(int velocidad) {
 	if (velocidad > 240 && velocidad < 300) { 
 		marcha = 5;
 	}
+	if (marchaN != marcha) {
+		cambia = true;
+		reproducirCambioMarcha();  //reproduce sonido de cambio de marcha
+	}
 }
 
 //cambiar velocidad: función encargada de cambiar la velocidad del personaje principal
@@ -937,15 +955,14 @@ void cambioMarcha(int velocidad) {
 //Salidas: ninguna
 //Restricciones: ninguna
 void cambiovelocidad(int movimiento) {
-	if (teclasDireccion[S] && velocidad > 1){ // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
+	if (teclasDireccion[S] && velocidad > 1) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
 		velocidad -= 2;
 	}
-	if (teclasDireccion[W] && velocidad < 299){// si se presiona la letra W se le va a empezar a sumar velocidad cada vez que se presione o si se mantiene presionda
+	if (teclasDireccion[W] && velocidad < 299) {// si se presiona la letra W se le va a empezar a sumar velocidad cada vez que se presione o si se mantiene presionda
 		velocidad += 2;
 	}
-	cambioMarcha(velocidad);
+	cambioMarcha();
 }
-
 //moverBalaPersonaje: función encargada de cambiar el valor de los ejes de las balas disponibles en el array
 //Entradas: movimiento (valor que se sumará a los ejes)
 //Salidas: ninguna
@@ -1201,6 +1218,7 @@ int main(int argc, char **argv) {
 	musicaJuego = al_load_sample("Musica/musicaautofantantico3.wav");
 	turbPersonaje = al_load_sample("Musica/bala.ogg");
 	disparoPersonaje = al_load_sample("Musica/bala.ogg");
+	marchaCambia = al_load_sample("Musica/cambiaMarcha.ogg");
 	disparoEnemigo = al_load_sample("Musica/Laser2.WAV");
 	colisionEnemigo = al_load_sample("Musica/ow.WAV");
 	//*******************
@@ -1537,6 +1555,7 @@ int main(int argc, char **argv) {
 	al_destroy_sample(musicaJuego);
 	al_destroy_sample(turbPersonaje);
 	al_destroy_sample(disparoEnemigo);
+	al_destroy_sample(marchaCambia);
 	al_destroy_sample(colisionEnemigo);
 
 	al_destroy_sample_instance(instanciaSonido);
