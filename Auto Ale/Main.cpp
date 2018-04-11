@@ -137,9 +137,9 @@ ALLEGRO_BITMAP *ultimo;
 
 ALLEGRO_SAMPLE *musicaJuego;
 ALLEGRO_SAMPLE *disparoPersonaje;
+ALLEGRO_SAMPLE *marchaCambia;
 ALLEGRO_SAMPLE *turbPersonaje;
 ALLEGRO_SAMPLE *disparoEnemigo;
-ALLEGRO_SAMPLE *marchaCambia;
 ALLEGRO_SAMPLE *colisionEnemigo;
 
 ALLEGRO_SAMPLE_INSTANCE *instanciaSonido;
@@ -207,6 +207,7 @@ void dibujarMenu() {
 	al_draw_text(fuente, al_map_rgb(255, 255, 255), 600, 380, ALLEGRO_ALIGN_CENTRE, "3- SALIR");
 	al_flip_display();
 }
+
 
 //dibujarPuntaje: función encargada de dibujar en pantalla el puntaje actual
 //Entradas: ninguna
@@ -911,15 +912,15 @@ void moverEnemigoTriangulo(int movimiento, int tiempo) {
 //Restricciones: ninguna
 void moverPersonaje(int movimiento) {
 	if (teclasDireccion[S]) {
-		if (personaje->y < 50) personaje->y += movimiento;
+		if (personaje->y < 500) personaje->y += movimiento;
 	}
 	if (teclasDireccion[W]) {
-		if (personaje->y > 10) personaje->y -= movimiento;
+		if (personaje->y > posicionRectanguloJuego + 10) personaje->y -= movimiento;
 	}
 	if (teclasDireccion[D] && velocidad != 0) {
-		if (personaje->x < (800)) personaje->x += movimiento;
+		if (personaje->x < (770)) personaje->x += movimiento;
 	}
-	if (teclasDireccion[A] && velocidad != 0) {
+	if (teclasDireccion[A] && velocidad !=0) {
 		if (personaje->x > 300) personaje->x -= movimiento;
 	}
 }
@@ -964,6 +965,22 @@ void cambiovelocidad(int movimiento) {
 	}
 	cambioMarcha();
 }
+/*CAMBIO DE VELOCIDAD CONFORME LA MARCHA 
+void cambiovelocidad(int movimiento) {
+if (teclasDireccion[S] && velocidad > 1) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
+velocidad -= 2;
+}
+if (teclasDireccion[W] && velocidad < 299) {// si se presiona la letra W se le va a empezar a sumar velocidad cada vez que se presione o si se mantiene presionda
+if (marcha >= 1 && marcha <= 3) {
+velocidad += 2;
+}
+if (marcha >= 4 && marcha <= 5) {
+velocidad += 4;
+}
+}
+cambioMarcha();
+}
+*/
 //moverBalaPersonaje: función encargada de cambiar el valor de los ejes de las balas disponibles en el array
 //Entradas: movimiento (valor que se sumará a los ejes)
 //Salidas: ninguna
