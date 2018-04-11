@@ -903,10 +903,10 @@ void moverPersonaje(int movimiento) {
 	if (teclasDireccion[W]) {
 		if (personaje->y > 10) personaje->y -= movimiento;
 	}
-	if (teclasDireccion[D]) {
+	if (teclasDireccion[D] && velocidad != 0) {
 		if (personaje->x < (800)) personaje->x += movimiento;
 	}
-	if (teclasDireccion[A]) {
+	if (teclasDireccion[A] && velocidad != 0) {
 		if (personaje->x > 300) personaje->x -= movimiento;
 	}
 }
