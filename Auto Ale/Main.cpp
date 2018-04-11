@@ -915,19 +915,19 @@ void moverPersonaje(int movimiento) {
 //Salidas: ninguna
 //Restricciones: ninguna
 void cambioMarcha(int velocidad) {
-	if (velocidad > 1 && velocidad < 60) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
+	if (velocidad > 1 && velocidad < 60) { 
 		marcha = 1;
 	}
-	if (velocidad > 60 && velocidad < 120) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
+	if (velocidad > 60 && velocidad < 120) { 
 		marcha = 2;
 	}
-	if (velocidad > 120 && velocidad < 180) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
+	if (velocidad > 120 && velocidad < 180) { 
 		marcha = 3;
 	}
-	if (velocidad > 180 && velocidad < 240) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
+	if (velocidad > 180 && velocidad < 240) { 
 		marcha = 4;
 	}
-	if (velocidad > 240 && velocidad < 300) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
+	if (velocidad > 240 && velocidad < 300) { 
 		marcha = 5;
 	}
 }
