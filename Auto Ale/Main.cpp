@@ -1569,6 +1569,7 @@ int main(int argc, char **argv) {
 	al_destroy_bitmap(enemigoTrianguloBuffer);
 	al_destroy_bitmap(bonusSalud);
 	al_destroy_bitmap(bonusVida);
+	al_destroy_bitmap(carretera);
 
 	al_destroy_sample(musicaJuego);
 	al_destroy_sample(turbPersonaje);
