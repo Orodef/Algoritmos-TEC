@@ -853,7 +853,7 @@ void reproducirDisparoPersonaje() {
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
-void reproducirCambioMarcha(){
+void reproducirCambioMarcha() {
 	instanciaSonido = al_create_sample_instance(marchaCambia);
 	al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
 	al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
@@ -920,7 +920,7 @@ void moverPersonaje(int movimiento) {
 	if (teclasDireccion[D] && velocidad != 0) {
 		if (personaje->x < (770)) personaje->x += movimiento;
 	}
-	if (teclasDireccion[A] && velocidad !=0) {
+	if (teclasDireccion[A] && velocidad != 0) {
 		if (personaje->x > 300) personaje->x -= movimiento;
 	}
 }
@@ -928,28 +928,30 @@ void moverPersonaje(int movimiento) {
 //Entradas: velocidad, para determinar la marcha
 //Salidas: ninguna
 //Restricciones: ninguna
-void cambioMarcha() {
+int cambioMarcha() {
 	bool cambia = false;
 	int marchaN = marcha;
-	if (velocidad > 1 && velocidad < 60) { 
+	if (velocidad > 1 && velocidad < 60) {
 		marcha = 1;
 	}
-	if (velocidad > 60 && velocidad < 120) { 
+	if (velocidad > 60 && velocidad < 120) {
 		marcha = 2;
 	}
-	if (velocidad > 120 && velocidad < 180) { 
+	if (velocidad > 120 && velocidad < 180) {
 		marcha = 3;
 	}
-	if (velocidad > 180 && velocidad < 240) { 
+	if (velocidad > 180 && velocidad < 240) {
 		marcha = 4;
 	}
-	if (velocidad > 240 && velocidad < 300) { 
+	if (velocidad > 240 && velocidad < 300) {
 		marcha = 5;
 	}
 	if (marchaN != marcha) {
 		cambia = true;
 		reproducirCambioMarcha();  //reproduce sonido de cambio de marcha
+	
 	}
+	return marcha;
 }
 
 //cambiar velocidad: función encargada de cambiar la velocidad del personaje principal
@@ -965,7 +967,7 @@ void cambiovelocidad(int movimiento) {
 	}
 	cambioMarcha();
 }
-/*CAMBIO DE VELOCIDAD CONFORME LA MARCHA 
+/*CAMBIO DE VELOCIDAD CONFORME LA MARCHA
 void cambiovelocidad(int movimiento) {
 if (teclasDireccion[S] && velocidad > 1) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
 velocidad -= 2;
