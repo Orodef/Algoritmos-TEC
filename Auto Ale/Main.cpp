@@ -25,67 +25,6 @@ Estas librerias son los structs correspondientes a cada uno de los personajes, b
 #include <allegro5/allegro_font.h>
 
 #include <allegro5/allegro_native_dialog.h>
-#include <allegro5/allegro_primitives.h
-
-#include <allegro5/allegro_image.h>
-
-#include <allegro5/allegro_audio.h>
-#include <allegro5/allegro_acodec.h>
-
-using namespace std
-//**********************************************************
-
-//Define parametros que se implementaran para este juego
-
-//tamaño de la pantalla de interfaz de allegro
-#define anchoPantalla 1100
-#define largoPantalla 600
-
-//posicion en la que se va a colocar la pantalla
-#define posicionRectanguloJuego 80
-
-//Definicion de timers que se utilizaran en el juego
-#define FPS 30.0
-#define FPS1 10.0
-#define FPS2 15.0
-#define FPS3 45.0
-#define FPS4 1.0
-#define FPS5 20.0
-#define FPS6 20.0
-
-//definicion de otros parametros necesarios en el juego
-#define dannoBalaEnemigo 5
-#define dannoEnemigoTriangulo 3.5
-#define numeroEnemigosTriangulo 1
-#define numeroturboPersonaje 100
-#define numeroBalasPersonaje 100
-#define numeroBalasEnemigo 5//####################                 Auto Fantastico              ####################
-
-// Mejorado por Alejandro Hernández y Luciano Cendra
-
-// Inclusion de las librerias
-#include <stdio.h>
-#include <iostream>
-#include <math.h>
-#include <windows.h>
-//**********************************************************
-
-/*Inclusion de librerias creadas especificamente para este proyecto
-Estas librerias son los structs correspondientes a cada uno de los personajes, balas o bonus
-*/
-#include "Auto.h" 
-#include "EnemigoPentagono.h"
-#include "EnemigoTriangulo.h"
-#include "BalaEnemigo.h" 
-#include "BalaPersonaje.h"
-#include "Bonus.h"
-
-#include <allegro5/allegro.h>
-
-#include <allegro5/allegro_ttf.h>
-#include <allegro5/allegro_font.h>
-
-#include <allegro5/allegro_native_dialog.h>
 #include <allegro5/allegro_primitives.h>
 
 #include <allegro5/allegro_image.h>
