@@ -870,7 +870,7 @@ void moverPersonaje(int movimiento) {
 		if (personaje->y >  450) personaje->y -= movimiento;
 	}
 	if (teclasDireccion[D] && velocidad != 0) {
-		if (personaje->x < (770)) personaje->x += movimiento;
+		if (personaje->x < (820)) personaje->x += movimiento;
 	}
 	if (teclasDireccion[A] && velocidad != 0) {
 		if (personaje->x > 300) personaje->x -= movimiento;
@@ -1103,9 +1103,9 @@ void generarBonus() {
 
 	for (int i = 0; i < numeroBonus; i++) {
 		if (bonus[i] == NULL) {
-			x = 33 + 0;
-			y = rand() % 6 + 7;
-			bonus[i] = new Bonus(x * 10, y * 40, i % 2, saludBonus);
+			x = rand() % 82 + 30;
+			y = 450;
+			bonus[i] = new Bonus(x * 10, y, i % 2, saludBonus);
 			bonusgenerados++;
 			bonusperdidos++;
 			break;
@@ -1209,7 +1209,7 @@ void iniciarPuntajes() {
 //Salidas: ninguna
 //Restricciones: ninguna
 void iniciarPersonaje() {
-	personaje = new PersonajePrincipal(300, 500, 3, 100.0);
+	personaje = new PersonajePrincipal(anchoPantalla / 2, 450, 3, 100.0);
 }
 
 
@@ -1271,17 +1271,17 @@ bool sensorPosicion() {
 	for (int i = 0; i < numeroBalasEnemigo; i++) {
 
 		if (balasEnemigo[i] != NULL) {
-			if (personaje->x == balasEnemigo[i]->x) {
-				cout << "funciona" << endl;
+			if ((personaje->x == balasEnemigo[i]->x) && (balasEnemigo[i]->y >= 200)) {
 				return true;
 			}
 			else return false;
 		}
+		else return false;
 	}
 }
 
 void funcionamientoSensor() {
-	if (sensorPosicion) {
+	if (sensorPosicion()) {
 		cout << "funciona" << endl;
 	}
 }
@@ -1445,6 +1445,7 @@ int main(int argc, char **argv) {
 	ALLEGRO_TIMER *sextoTimer = al_create_timer(20.0 / FPS4);
 	ALLEGRO_TIMER *septimoTimer = al_create_timer(1.0 / FPS5);
 	ALLEGRO_TIMER *octavoTimer = al_create_timer(1.0 / FPS6);
+	ALLEGRO_TIMER *novenoTimer = al_create_timer(1.0 / FPS);
 	//**********************************************************
 
 	//Se crea una cola de eventos
@@ -1460,6 +1461,7 @@ int main(int argc, char **argv) {
 	al_register_event_source(colaEventos, al_get_timer_event_source(sextoTimer));
 	al_register_event_source(colaEventos, al_get_timer_event_source(septimoTimer));
 	al_register_event_source(colaEventos, al_get_timer_event_source(octavoTimer));
+	al_register_event_source(colaEventos, al_get_timer_event_source(novenoTimer));
 	al_register_event_source(colaEventos, al_get_keyboard_event_source());
 	//**********************************************************
 
@@ -1474,6 +1476,7 @@ int main(int argc, char **argv) {
 	al_start_timer(sextoTimer);
 	al_start_timer(septimoTimer);
 	al_start_timer(octavoTimer);
+	al_start_timer(novenoTimer);
 	//**********************************************************
 
 	//Llamado a las funciones que inicializan los componentes lógicos del juego
@@ -1581,7 +1584,6 @@ int main(int argc, char **argv) {
 			if (eventos.timer.source == primerTimer) {
 				moverPersonaje(movimiento);
 				cambiovelocidad(movimiento);
-
 			}
 
 			else if (eventos.timer.source == segundoTimer) {
@@ -1642,12 +1644,16 @@ int main(int argc, char **argv) {
 				//dibujarnumenemigos();
 				//dibujarbonusgenerados();
 				//dibujarbonusperdidos();
-				funcionamientoSensor();
 
 			}
 
 			else if (eventos.timer.source == octavoTimer) {
 				moverEnemigoTriangulo(movimiento, 3);
+			}
+
+			else if (eventos.timer.source == novenoTimer) {
+				sensorPosicion();
+				funcionamientoSensor();
 			}
 
 		}
@@ -1720,6 +1726,7 @@ int main(int argc, char **argv) {
 	al_destroy_timer(sextoTimer);
 	al_destroy_timer(septimoTimer);
 	al_destroy_timer(octavoTimer);
+	al_destroy_timer(novenoTimer);
 
 	return 0;
 }
