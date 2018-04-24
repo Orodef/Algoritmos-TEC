@@ -38,6 +38,7 @@ Estas librerias son los structs correspondientes a cada uno de los personajes, b
 #include "BalaEnemigo.h" 
 #include "BalaPersonaje.h"
 #include "Bonus.h"
+#include "Carretera.h"
 
 #include <allegro5/allegro.h>
 
@@ -74,6 +75,7 @@ using namespace std;
 #define FPS6 20.0
 #define FPS7 5.0
 #define FPS8 0.2
+#define FPS9 35.0
 
 //definicion de otros parametros necesarios en el juego
 #define dannoBalaEnemigo 5
@@ -110,7 +112,7 @@ bool teclaPiloto[1] = { false };
 int puntaje = 0;
 int gas = 100;
 int gasusado = 0;
-float velocidad = 2.0;
+float velocidad = 0.0;
 int marcha = 1;
 bool turb = false;
 int balasdisp = 0;
@@ -144,9 +146,15 @@ ALLEGRO_DISPLAY *pantalla;
 
 ALLEGRO_COLOR transparente;
 
+ALLEGRO_BITMAP *carretera1;
+ALLEGRO_BITMAP *carretera2;
+
+Carretera *ncarretera1;
+Carretera *ncarretera2;
+
 ALLEGRO_BITMAP *principalBuffer;
 ALLEGRO_BITMAP *enemigoTrianguloBuffer;
-ALLEGRO_BITMAP *carretera;
+//ALLEGRO_BITMAP *carretera;
 
 ALLEGRO_BITMAP *principalIzquierda;
 ALLEGRO_BITMAP *principalDerecha;
@@ -421,7 +429,7 @@ void dibujarcontroles() {
 //Salidas: ninguna
 //Restricciones: ninguna
 void dibujarCondiciones() {
-	
+
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 320, ALLEGRO_ALIGN_CENTRE, "Clima");
 	if (clima == 1) {
 		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 350, ALLEGRO_ALIGN_CENTRE, "Soleado");
@@ -457,7 +465,7 @@ void dibujarCondiciones() {
 	else {
 		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 510, ALLEGRO_ALIGN_CENTRE, "Subida");
 	}
-	
+
 	al_flip_display();
 }
 
@@ -574,7 +582,7 @@ void dibujarPrincipal(int x, int y, int direccion) {
 
 }
 
-
+/*
 //dibujar Carretera: función encargada de dibujar en pantalla la carretera
 //Entradas: ninguna
 //Salidas: ninguna
@@ -586,7 +594,57 @@ void dibujarcarretera() {
 	al_draw_bitmap(carretera, 300, 0, NULL);
 	al_flip_display();
 
+}*/
+
+//dibujar Carretera: función encargada de dibujar en pantalla la carretera
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: ninguna
+void dibujarcarretera() {
+	al_set_target_bitmap(carretera1);
+
+	al_set_target_bitmap(al_get_backbuffer(pantalla));
+	al_draw_bitmap(carretera1, 300, ncarretera1->y, NULL);
+	al_flip_display();
 }
+
+//dibujar Carretera: función encargada de dibujar en pantalla la carretera
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: ninguna
+void dibujarcarretera2() {
+	al_set_target_bitmap(carretera2);
+
+	al_set_target_bitmap(al_get_backbuffer(pantalla));
+	al_draw_bitmap(carretera2, 300, ncarretera2->y, NULL);
+	al_flip_display();
+}
+
+void animarCarretera(int vel) {
+	if (ncarretera1->y >= largoPantalla) {
+		ncarretera1->y = -600;
+		ncarretera2->y = 0;
+	}
+	if (ncarretera2->y >= largoPantalla) {
+		ncarretera2->y = -600;
+		ncarretera1->y = 0;
+	}
+	else {
+		ncarretera1->y += vel;
+		ncarretera2->y += vel;
+	}
+	/*if (ncarretera1->y >= 160) {
+	ncarretera1->y == -80;
+	}
+	if (ncarretera2->y >= 160) {
+	ncarretera2->y == -80;
+	}
+	else {
+	ncarretera1->y += movimiento;
+	ncarretera2->y += movimiento;
+	}*/
+}
+
 
 //dibujarEnemigoTriangulo: función encargada de dibujar en pantalla al enemigo triángulo 
 //Entradas: ninguna
@@ -1298,6 +1356,15 @@ void iniciarBalasEnemigo() {
 	}
 }
 
+//iniciarCarretera: función encargada de iniciarCarretera
+//Entradas: Carretera *ncarretera, eje y
+//Salidas: ninguna
+//Restricciones: 
+void iniciarCarreteras() {
+	ncarretera1 = new Carretera(0);
+	ncarretera2 = new Carretera(-600);
+}
+
 
 //iniciarBonus: función encargada de iniciar los bonus del juego
 //Entradas: ninguna
@@ -1434,7 +1501,8 @@ int main(int argc, char **argv) {
 	//*******************
 	principalBuffer = al_create_bitmap(30, 30);
 	enemigoTrianguloBuffer = al_create_bitmap(60, 60);
-	carretera = al_create_bitmap(20, 30);
+	carretera1 = al_create_bitmap(20, 30);
+	carretera2 = al_create_bitmap(20, 30);
 	//*******************
 
 	//Se cargan las imágenes que se van a utilizar en el juego
@@ -1447,7 +1515,8 @@ int main(int argc, char **argv) {
 	balaEnemigo = al_load_bitmap("Imagenes/carop.png");
 	bonusSalud = al_load_bitmap("Imagenes/estrella.png");
 	bonusVida = al_load_bitmap("Imagenes/estrella.png");
-	carretera = al_load_bitmap("Imagenes/carretera2.png");
+	carretera1 = al_load_bitmap("Imagenes/background1.png");
+	carretera2 = al_load_bitmap("Imagenes/background1.png");
 	//*******************
 
 	//Líneas para obtener las funcionalidades de los audios
@@ -1541,6 +1610,7 @@ int main(int argc, char **argv) {
 	ALLEGRO_TIMER *octavoTimer = al_create_timer(1.0 / FPS6);
 	ALLEGRO_TIMER *novenoTimer = al_create_timer(1.0 / FPS);
 	ALLEGRO_TIMER *decimoTimer = al_create_timer(1.0 / FPS8);
+	ALLEGRO_TIMER *undecimoTimer = al_create_timer(1.0 / FPS9);
 	//**********************************************************
 
 	//Se crea una cola de eventos
@@ -1558,6 +1628,7 @@ int main(int argc, char **argv) {
 	al_register_event_source(colaEventos, al_get_timer_event_source(octavoTimer));
 	al_register_event_source(colaEventos, al_get_timer_event_source(novenoTimer));
 	al_register_event_source(colaEventos, al_get_timer_event_source(decimoTimer));
+	al_register_event_source(colaEventos, al_get_timer_event_source(undecimoTimer));
 	al_register_event_source(colaEventos, al_get_keyboard_event_source());
 	//**********************************************************
 
@@ -1574,6 +1645,7 @@ int main(int argc, char **argv) {
 	al_start_timer(octavoTimer);
 	al_start_timer(novenoTimer);
 	al_start_timer(decimoTimer);
+	al_start_timer(undecimoTimer);
 	//**********************************************************
 
 	//Llamado a las funciones que inicializan los componentes lógicos del juego
@@ -1583,6 +1655,8 @@ int main(int argc, char **argv) {
 	iniciarBalasPersonaje();
 	iniciarBalasEnemigo();
 	iniciarBonus();
+
+	iniciarCarreteras();
 	//**********************************************************
 
 
@@ -1720,6 +1794,8 @@ int main(int argc, char **argv) {
 
 			else if (eventos.timer.source == septimoTimer) {
 				dibujarcarretera();
+				dibujarcarretera2();
+				//dibujarcarretera();
 				dibujarPrincipal(personaje->x, personaje->y, direccion);
 				dibujarEnemigoTriangulo();
 				dibujarBalasPersonaje();
@@ -1753,13 +1829,18 @@ int main(int argc, char **argv) {
 				sensorPosicion();
 				funcionamientoSensor();
 				moverAutomatico();
-				
+
 			}
 
 			else if (eventos.timer.source == decimoTimer) {
 				determinarMaterial();
 				determinarClima();
 				determinarPendiente();
+			}
+
+			else if (eventos.timer.source == undecimoTimer) {
+				cambiovelocidad(movimiento);
+				animarCarretera(velocidad / 2);
 			}
 		}
 
@@ -1813,7 +1894,8 @@ int main(int argc, char **argv) {
 	al_destroy_bitmap(enemigoTrianguloBuffer);
 	al_destroy_bitmap(bonusSalud);
 	al_destroy_bitmap(bonusVida);
-	al_destroy_bitmap(carretera);
+	al_destroy_bitmap(carretera1);
+	al_destroy_bitmap(carretera2);
 
 	al_destroy_sample(musicaJuego);
 	al_destroy_sample(turbPersonaje);
@@ -1833,6 +1915,7 @@ int main(int argc, char **argv) {
 	al_destroy_timer(octavoTimer);
 	al_destroy_timer(novenoTimer);
 	al_destroy_timer(decimoTimer);
+	al_destroy_timer(undecimoTimer);
 
 	return 0;
 }
