@@ -73,6 +73,7 @@ using namespace std;
 #define FPS5 20.0
 #define FPS6 20.0
 #define FPS7 5.0
+#define FPS8 0.2
 
 //definicion de otros parametros necesarios en el juego
 #define dannoBalaEnemigo 5
@@ -119,6 +120,9 @@ int balasperdidas = 0;
 int numenemigos = 0;
 int bonusgenerados = 0;
 int bonusperdidos = 0;
+int clima = 1;
+int material = 1;
+int pendiente = 1;
 
 FILE *documento;
 //********************************************************** 
@@ -402,16 +406,60 @@ void dibujarnumenemigos() {
 //Salidas: ninguna
 //Restricciones: ninguna
 void dibujarcontroles() {
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 945, 100, ALLEGRO_ALIGN_LEFT, "Manejo:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 955, 130, ALLEGRO_ALIGN_LEFT, "A,W,S,D");
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 945, 180, ALLEGRO_ALIGN_LEFT, "Disparo:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 955, 210, ALLEGRO_ALIGN_LEFT, "J,I,K,L");
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 955, 260, ALLEGRO_ALIGN_LEFT, "Piloto");
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 925, 290, ALLEGRO_ALIGN_LEFT, "Automatico:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 985, 320, ALLEGRO_ALIGN_LEFT, "M");
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 50, ALLEGRO_ALIGN_CENTER, "Manejo:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 80, ALLEGRO_ALIGN_CENTER, "A,W,S,D");
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 130, ALLEGRO_ALIGN_CENTER, "Disparo:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 160, ALLEGRO_ALIGN_CENTER, "J,I,K,L");
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 210, ALLEGRO_ALIGN_CENTER, "Piloto");
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 240, ALLEGRO_ALIGN_CENTER, "Automatico:");
+	al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 270, ALLEGRO_ALIGN_CENTER, "M");
 	al_flip_display();
 }
 
+//dibujarCondiciones: función encargada de dibujar en pantalla las condiciones de la carretera: pendiente, material y clima
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: ninguna
+void dibujarCondiciones() {
+	
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 320, ALLEGRO_ALIGN_CENTRE, "Clima");
+	if (clima == 1) {
+		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 350, ALLEGRO_ALIGN_CENTRE, "Soleado");
+	}
+	else if (clima == 2) {
+		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 350, ALLEGRO_ALIGN_CENTRE, "Lluvioso");
+	}
+	else {
+		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 350, ALLEGRO_ALIGN_CENTRE, "Nevado");
+	}
+
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 400, ALLEGRO_ALIGN_CENTRE, "Material");
+	if (material == 1) {
+		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 430, ALLEGRO_ALIGN_CENTRE, "Autopista");
+	}
+	else if (material == 2) {
+		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 430, ALLEGRO_ALIGN_CENTRE, "Lastre");
+	}
+	else if (material == 3) {
+		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 430, ALLEGRO_ALIGN_CENTRE, "Arena");
+	}
+	else {
+		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 430, ALLEGRO_ALIGN_CENTRE, "Tierra");
+	}
+
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 480, ALLEGRO_ALIGN_CENTRE, "Pendeinte");
+	if (material == 1) {
+		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 510, ALLEGRO_ALIGN_CENTRE, "Plano");
+	}
+	else if (material == 2) {
+		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 510, ALLEGRO_ALIGN_CENTRE, "Bajada");
+	}
+	else {
+		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 510, ALLEGRO_ALIGN_CENTRE, "Subida");
+	}
+	
+	al_flip_display();
+}
 
 //dibujarSalud: función encargada de dibujar en pantalla la salud actual
 //Entradas: ninguna
@@ -1269,29 +1317,29 @@ void iniciarBonus() {
 
 //DeterminarPendiente: función encargada de determinar aleatoriamente una pendeinte
 //Entradas: ninguna
-//Salidas: la pendiente, ya sea de subida o de bajada
+//Salidas: la pendiente, ya sea de subida, plano o de bajada
 //Restricciones: ninguna
-int determinarPendiente() {
-	int pendiente = rand() % 2 + 1;
-	return pendiente;
+void determinarPendiente() {
+	pendiente = rand() % 3 + 1;
+	cout << pendiente << endl;
 }
 
 //DeterminarClima: función encargada de determinar aleatoriamente un clima
 //Entradas: ninguna
 //Salidas: clima tipo lluvia, nevada o sol
 //Restricciones: ninguna
-int determinarClima() {
-	int clima = rand() % 3 + 1;
-	return clima;
+void determinarClima() {
+	clima = rand() % 3 + 1;
+	cout << clima << endl;
 }
 
 //DeterminarCarretera: función encargada de determinar aleatoriamente un material para la carretera sobre la que se conduce
 //Entradas: ninguna
 //Salidas: el material, que puede ser arena, tierra, lastre o asfalto
 //Restricciones: ninguna
-int determinarCarretera() {
-	int carretera = rand() % 4 + 1;
-	return carretera;
+void determinarMaterial() {
+	material = rand() % 4 + 1;
+	cout << material << endl;
 }
 
 
@@ -1324,10 +1372,10 @@ void funcionamientoSensor() {
 void moverAutomatico() {
 	if (sensorPosicion()) {
 		if (personaje->x < anchoPantalla / 2) {
-			personaje->x += 5;
+			personaje->x += 25;
 		}
 		else {
-			personaje->x -= 5;
+			personaje->x -= 25;
 		}
 	}
 }
@@ -1492,6 +1540,7 @@ int main(int argc, char **argv) {
 	ALLEGRO_TIMER *septimoTimer = al_create_timer(1.0 / FPS5);
 	ALLEGRO_TIMER *octavoTimer = al_create_timer(1.0 / FPS6);
 	ALLEGRO_TIMER *novenoTimer = al_create_timer(1.0 / FPS);
+	ALLEGRO_TIMER *decimoTimer = al_create_timer(1.0 / FPS8);
 	//**********************************************************
 
 	//Se crea una cola de eventos
@@ -1508,6 +1557,7 @@ int main(int argc, char **argv) {
 	al_register_event_source(colaEventos, al_get_timer_event_source(septimoTimer));
 	al_register_event_source(colaEventos, al_get_timer_event_source(octavoTimer));
 	al_register_event_source(colaEventos, al_get_timer_event_source(novenoTimer));
+	al_register_event_source(colaEventos, al_get_timer_event_source(decimoTimer));
 	al_register_event_source(colaEventos, al_get_keyboard_event_source());
 	//**********************************************************
 
@@ -1523,6 +1573,7 @@ int main(int argc, char **argv) {
 	al_start_timer(septimoTimer);
 	al_start_timer(octavoTimer);
 	al_start_timer(novenoTimer);
+	al_start_timer(decimoTimer);
 	//**********************************************************
 
 	//Llamado a las funciones que inicializan los componentes lógicos del juego
@@ -1690,6 +1741,7 @@ int main(int argc, char **argv) {
 				//dibujarnumenemigos();
 				//dibujarbonusgenerados();
 				//dibujarbonusperdidos();
+				dibujarCondiciones();
 
 			}
 
@@ -1701,8 +1753,14 @@ int main(int argc, char **argv) {
 				sensorPosicion();
 				funcionamientoSensor();
 				moverAutomatico();
+				
 			}
 
+			else if (eventos.timer.source == decimoTimer) {
+				determinarMaterial();
+				determinarClima();
+				determinarPendiente();
+			}
 		}
 
 		cambiarSpriteEnemigoTriangulo();
@@ -1774,6 +1832,7 @@ int main(int argc, char **argv) {
 	al_destroy_timer(septimoTimer);
 	al_destroy_timer(octavoTimer);
 	al_destroy_timer(novenoTimer);
+	al_destroy_timer(decimoTimer);
 
 	return 0;
 }
