@@ -15,6 +15,7 @@
 -Salud y Vida
 -Colisiones
 -Inicialización
+-Condiciones de carretera
 -Sensores de Piloto Automático
 
 -MAIN
@@ -1261,6 +1262,40 @@ void iniciarBonus() {
 }
 
 
+
+//	_________________________________________________________________________________________	CONDICIONES de CARRETERA
+
+
+
+//DeterminarPendiente: función encargada de determinar aleatoriamente una pendeinte
+//Entradas: ninguna
+//Salidas: la pendiente, ya sea de subida o de bajada
+//Restricciones: ninguna
+int determinarPendiente() {
+	int pendiente = rand() % 2 + 1;
+	return pendiente;
+}
+
+//DeterminarClima: función encargada de determinar aleatoriamente un clima
+//Entradas: ninguna
+//Salidas: clima tipo lluvia, nevada o sol
+//Restricciones: ninguna
+int determinarClima() {
+	int clima = rand() % 3 + 1;
+	return clima;
+}
+
+//DeterminarCarretera: función encargada de determinar aleatoriamente un material para la carretera sobre la que se conduce
+//Entradas: ninguna
+//Salidas: el material, que puede ser arena, tierra, lastre o asfalto
+//Restricciones: ninguna
+int determinarCarretera() {
+	int carretera = rand() % 4 + 1;
+	return carretera;
+}
+
+
+
 //	_________________________________________________________________________________________	 SENSORES para el PILOTO AUTOMÁTICO
 
 //sensorPosicion: función que compara la posición del auto con los enemigos y lo mueve en caso de que sea igual
@@ -1283,6 +1318,17 @@ bool sensorPosicion() {
 void funcionamientoSensor() {
 	if (sensorPosicion()) {
 		cout << "funciona" << endl;
+	}
+}
+
+void moverAutomatico() {
+	if (sensorPosicion()) {
+		if (personaje->x < anchoPantalla / 2) {
+			personaje->x += 5;
+		}
+		else {
+			personaje->x -= 5;
+		}
 	}
 }
 
@@ -1654,6 +1700,7 @@ int main(int argc, char **argv) {
 			else if (eventos.timer.source == novenoTimer) {
 				sensorPosicion();
 				funcionamientoSensor();
+				moverAutomatico();
 			}
 
 		}
