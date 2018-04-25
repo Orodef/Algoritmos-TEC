@@ -455,7 +455,7 @@ void dibujarCondiciones() {
 		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 430, ALLEGRO_ALIGN_CENTRE, "Tierra");
 	}
 
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 480, ALLEGRO_ALIGN_CENTRE, "Pendeinte");
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 480, ALLEGRO_ALIGN_CENTRE, "Pendiente");
 	if (material == 1) {
 		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 510, ALLEGRO_ALIGN_CENTRE, "Plano");
 	}
