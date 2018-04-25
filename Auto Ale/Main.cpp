@@ -621,11 +621,11 @@ void dibujarcarretera2() {
 }
 
 void animarCarretera(int vel) {
-	if (ncarretera1->y >= largoPantalla-20) {
+	if (ncarretera1->y >= largoPantalla-10) {
 		ncarretera1->y = -600;
 		ncarretera2->y = 0;
 	}
-	if (ncarretera2->y >= largoPantalla-20) {
+	if (ncarretera2->y >= largoPantalla-10) {
 		ncarretera2->y = -600;
 		ncarretera1->y = 0;
 	}
