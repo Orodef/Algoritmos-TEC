@@ -1950,7 +1950,7 @@ int main(int argc, char **argv) {
 			guardarPuntajes();
 		}
 
-		if (gas == 0) {
+		if (gas <= 0) {
 			hecho = false;
 			guardarPuntajes();
 		}
