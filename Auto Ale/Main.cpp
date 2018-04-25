@@ -630,8 +630,14 @@ void animarCarretera(int vel) {
 		ncarretera1->y = 0;
 	}
 	else {
-		ncarretera1->y += vel;
-		ncarretera2->y += vel;
+		if (velocidad <= 300 && velocidad>=5) {
+			ncarretera1->y += vel/5;
+			ncarretera2->y += vel/5;
+		}
+		else if (velocidad<5 && velocidad>0) {
+			ncarretera1->y += vel-1;
+			ncarretera2->y += vel-1;
+		}
 	}
 	/*if (ncarretera1->y >= 160) {
 	ncarretera1->y == -80;
@@ -1917,7 +1923,7 @@ int main(int argc, char **argv) {
 
 			else if (eventos.timer.source == undecimoTimer) {
 				cambiovelocidad(movimiento);
-				animarCarretera(velocidad / 2);
+				animarCarretera(velocidad);//velocidad/2
 			}
 
 			else if (eventos.timer.source == duodecimoTimer && teclaPiloto[M] == true) {
