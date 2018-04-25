@@ -1462,9 +1462,9 @@ void moverAutomatico() {
 	}
 }
 
-void cambiarVelocidadPendiente() {
+void cambiarVelocidadPendiente() {//siempre que pendiente sea 3, 45 velocidad
 	if (pendiente == 3) {
-		while (velocidad != 45) {
+		if (velocidad != 45) {
 			if (velocidad < 45) velocidad -= 2;
 			else velocidad += 2;
 		}
@@ -1474,14 +1474,18 @@ void cambiarVelocidadPendiente() {
 void cambiarVelocidadClima() {
 	if (pendiente != 3) {
 		if (clima == 2) {
-			while (velocidad != 50) {
-				if (velocidad > 50) velocidad -= 2;
+			if (velocidad != 50) {
+				if (velocidad > 50) {
+					velocidad -= 2;
+				}
 				else velocidad += 2;
 			}
 		}
 		if (clima == 3) {
-			while (velocidad != 30) {
-				if (velocidad > 30) velocidad -= 2;
+			if (velocidad != 30) {
+				if (velocidad > 30){
+					velocidad -= 2;
+					}
 				else velocidad += 2;
 			}
 		}
@@ -1489,26 +1493,28 @@ void cambiarVelocidadClima() {
 }
 
 void cambiarVelocidadMaterial() {
-	if (clima == 1) {
+	if (clima == 1 && pendiente!=3) {
 		if (material == 2) {
-			while (velocidad != 60) {
+			if(velocidad != 60) {
 				if (velocidad > 60) velocidad -= 2;
 				else velocidad += 2;
 			}
 		}
 		if (material == 3) {
-			while (velocidad != 20) {
+			if (velocidad != 20) {
 				if (velocidad > 20) velocidad -= 2;
 				else velocidad += 2;
 			}
 		}
 		if (material == 4) {
-			while (velocidad != 40) {
+			if (velocidad != 40) {
 				if (velocidad > 40) velocidad -= 2;
 				else velocidad += 2;
 			}
 		}
-		if (material == 1) while (velocidad != 300) velocidad += 2;
+		if (material == 1) {
+			if (velocidad < 300) velocidad += 2;
+		}
 	}
 }
 
@@ -1675,6 +1681,7 @@ int main(int argc, char **argv) {
 	ALLEGRO_TIMER *novenoTimer = al_create_timer(1.0 / FPS);
 	ALLEGRO_TIMER *decimoTimer = al_create_timer(1.0 / FPS8);
 	ALLEGRO_TIMER *undecimoTimer = al_create_timer(1.0 / FPS9);
+	ALLEGRO_TIMER *duodecimoTimer = al_create_timer(1.0 / FPS);
 	//**********************************************************
 
 	//Se crea una cola de eventos
@@ -1693,6 +1700,7 @@ int main(int argc, char **argv) {
 	al_register_event_source(colaEventos, al_get_timer_event_source(novenoTimer));
 	al_register_event_source(colaEventos, al_get_timer_event_source(decimoTimer));
 	al_register_event_source(colaEventos, al_get_timer_event_source(undecimoTimer));
+	al_register_event_source(colaEventos, al_get_timer_event_source(duodecimoTimer));
 	al_register_event_source(colaEventos, al_get_keyboard_event_source());
 	//**********************************************************
 
@@ -1710,6 +1718,7 @@ int main(int argc, char **argv) {
 	al_start_timer(novenoTimer);
 	al_start_timer(decimoTimer);
 	al_start_timer(undecimoTimer);
+	al_start_timer(duodecimoTimer);
 	//**********************************************************
 
 	//Llamado a las funciones que inicializan los componentes lógicos del juego
@@ -1818,7 +1827,6 @@ int main(int argc, char **argv) {
 		if (eventos.type == ALLEGRO_EVENT_TIMER) {
 			if (eventos.timer.source == primerTimer) {
 				moverPersonaje(movimiento);
-				cambiovelocidad(movimiento);
 			}
 
 			else if (eventos.timer.source == segundoTimer) {
@@ -1893,9 +1901,6 @@ int main(int argc, char **argv) {
 				sensorPosicion();
 				funcionamientoSensor();
 				moverAutomatico();
-				cambiarVelocidadPendiente();
-				cambiarVelocidadClima();
-				cambiarVelocidadMaterial();
 
 			}
 
@@ -1908,6 +1913,12 @@ int main(int argc, char **argv) {
 			else if (eventos.timer.source == undecimoTimer) {
 				cambiovelocidad(movimiento);
 				animarCarretera(velocidad / 2);
+			}
+
+			else if (eventos.timer.source == duodecimoTimer) {
+				cambiarVelocidadPendiente();
+				cambiarVelocidadClima();
+				cambiarVelocidadMaterial();
 			}
 		}
 
@@ -1983,6 +1994,7 @@ int main(int argc, char **argv) {
 	al_destroy_timer(novenoTimer);
 	al_destroy_timer(decimoTimer);
 	al_destroy_timer(undecimoTimer);
+	al_destroy_timer(duodecimoTimer);
 
 	return 0;
 }
