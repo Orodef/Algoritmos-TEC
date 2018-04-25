@@ -1483,9 +1483,9 @@ void cambiarVelocidadClima() {
 		}
 		if (clima == 3) {
 			if (velocidad != 30) {
-				if (velocidad > 30){
+				if (velocidad > 30) {
 					velocidad -= 2;
-					}
+				}
 				else velocidad += 2;
 			}
 		}
@@ -1493,9 +1493,9 @@ void cambiarVelocidadClima() {
 }
 
 void cambiarVelocidadMaterial() {
-	if (clima == 1 && pendiente!=3) {
+	if (clima == 1 && pendiente != 3) {
 		if (material == 2) {
-			if(velocidad != 60) {
+			if (velocidad != 60) {
 				if (velocidad > 60) velocidad -= 2;
 				else velocidad += 2;
 			}
@@ -1784,6 +1784,11 @@ int main(int argc, char **argv) {
 				disparo = D;
 				break;
 
+			case ALLEGRO_KEY_M:
+				if (teclaPiloto[M] == true) teclaPiloto[M] = false;
+				else teclaPiloto[M] = true;
+				break;
+
 			case ALLEGRO_KEY_ESCAPE:
 				guardarPuntajes();
 				hecho = false;
@@ -1897,7 +1902,7 @@ int main(int argc, char **argv) {
 				moverEnemigoTriangulo(movimiento, 3);
 			}
 
-			else if (eventos.timer.source == novenoTimer) {
+			else if (eventos.timer.source == novenoTimer && teclaPiloto[M] == true) {
 				sensorPosicion();
 				funcionamientoSensor();
 				moverAutomatico();
@@ -1915,7 +1920,7 @@ int main(int argc, char **argv) {
 				animarCarretera(velocidad / 2);
 			}
 
-			else if (eventos.timer.source == duodecimoTimer) {
+			else if (eventos.timer.source == duodecimoTimer && teclaPiloto[M] == true) {
 				cambiarVelocidadPendiente();
 				cambiarVelocidadClima();
 				cambiarVelocidadMaterial();
