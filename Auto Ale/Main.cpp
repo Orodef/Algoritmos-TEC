@@ -1122,6 +1122,21 @@ void sumargasusado(int suma) {
 }
 
 
+void consumoGasClima() {
+	if (clima == 2) gas -= 1;
+	if (clima == 3) gas -= 2;
+}
+
+void consumoGasMaterial() {
+	if (material == 2) gas -= 1.2;
+	if (material == 3) gas -= 2;
+	if (material == 4) gas -= 1.5;
+}
+
+void consumoGasPendiente() {
+	if (pendiente == 3) gas -= 2;
+}
+
 
 
 // _________________________________________________________________________________________		SALUD Y VIDA
@@ -1447,13 +1462,14 @@ void moverAutomatico() {
 	}
 }
 
-/*void cambiarVelocidadPendiente() {
+void cambiarVelocidadPendiente() {
 	if (pendiente == 3) {
 		while (velocidad != 45) {
-			if (velocidad < )
+			if (velocidad < 45) velocidad -= 2;
+			else velocidad += 2;
 		}
 	}
-}*/
+}
 
 void cambiarVelocidadClima() {
 	if (pendiente != 3) {
@@ -1877,6 +1893,7 @@ int main(int argc, char **argv) {
 				sensorPosicion();
 				funcionamientoSensor();
 				moverAutomatico();
+				cambiarVelocidadPendiente();
 				cambiarVelocidadClima();
 				cambiarVelocidadMaterial();
 
