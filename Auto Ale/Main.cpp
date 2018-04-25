@@ -1469,7 +1469,7 @@ void moverAutomatico() {
 }
 
 void cambiarVelocidadPendiente() {//siempre que pendiente sea 3, 45 velocidad
-	if (pendiente == 3 && velocidad > 0 && velocidad <= 300) {
+	if (pendiente == 3 && velocidad > 0 && velocidad < 300) {
 		if (velocidad != 45) {
 			if (velocidad < 45) velocidad -= 2;
 			else velocidad += 2;
@@ -1478,7 +1478,7 @@ void cambiarVelocidadPendiente() {//siempre que pendiente sea 3, 45 velocidad
 }
 
 void cambiarVelocidadClima() {
-	if (pendiente != 3 && velocidad > 0 && velocidad <= 300) {
+	if (pendiente != 3 && velocidad > 0 && velocidad < 300) {
 		if (clima == 2) {
 			if (velocidad != 50) {
 				if (velocidad > 50) {
@@ -1499,7 +1499,7 @@ void cambiarVelocidadClima() {
 }
 
 void cambiarVelocidadMaterial() {
-	if (clima == 1 && pendiente != 3 && velocidad > 0 && velocidad <= 300) {
+	if (clima == 1 && pendiente != 3 && velocidad > 0 && velocidad < 300) {
 		if (material == 2) {
 			if (velocidad != 60) {
 				if (velocidad > 60) velocidad -= 2;
