@@ -74,7 +74,7 @@ using namespace std;
 #define FPS5 20.0
 #define FPS6 20.0
 #define FPS7 5.0
-#define FPS8 0.2
+#define FPS8 0.1
 #define FPS9 35.0
 
 //definicion de otros parametros necesarios en el juego
@@ -588,11 +588,11 @@ void dibujarPrincipal(int x, int y, int direccion) {
 //Salidas: ninguna
 //Restricciones: ninguna
 void dibujarcarretera() {
-	al_set_target_bitmap(carretera);
+al_set_target_bitmap(carretera);
 
-	al_set_target_bitmap(al_get_backbuffer(pantalla));
-	al_draw_bitmap(carretera, 300, 0, NULL);
-	al_flip_display();
+al_set_target_bitmap(al_get_backbuffer(pantalla));
+al_draw_bitmap(carretera, 300, 0, NULL);
+al_flip_display();
 
 }*/
 
@@ -1447,6 +1447,54 @@ void moverAutomatico() {
 	}
 }
 
+/*void cambiarVelocidadPendiente() {
+	if (pendiente == 3) {
+		while (velocidad != 45) {
+			if (velocidad < )
+		}
+	}
+}*/
+
+void cambiarVelocidadClima() {
+	if (pendiente != 3) {
+		if (clima == 2) {
+			while (velocidad != 50) {
+				if (velocidad > 50) velocidad -= 2;
+				else velocidad += 2;
+			}
+		}
+		if (clima == 3) {
+			while (velocidad != 30) {
+				if (velocidad > 30) velocidad -= 2;
+				else velocidad += 2;
+			}
+		}
+	}
+}
+
+void cambiarVelocidadMaterial() {
+	if (clima == 1) {
+		if (material == 2) {
+			while (velocidad != 60) {
+				if (velocidad > 60) velocidad -= 2;
+				else velocidad += 2;
+			}
+		}
+		if (material == 3) {
+			while (velocidad != 20) {
+				if (velocidad > 20) velocidad -= 2;
+				else velocidad += 2;
+			}
+		}
+		if (material == 4) {
+			while (velocidad != 40) {
+				if (velocidad > 40) velocidad -= 2;
+				else velocidad += 2;
+			}
+		}
+		if (material == 1) while (velocidad != 300) velocidad += 2;
+	}
+}
 
 
 
@@ -1829,6 +1877,8 @@ int main(int argc, char **argv) {
 				sensorPosicion();
 				funcionamientoSensor();
 				moverAutomatico();
+				cambiarVelocidadClima();
+				cambiarVelocidadMaterial();
 
 			}
 
