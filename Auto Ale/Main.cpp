@@ -455,7 +455,7 @@ void dibujarCondiciones() {
 		al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 430, ALLEGRO_ALIGN_CENTRE, "Tierra");
 	}
 
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 480, ALLEGRO_ALIGN_CENTRE, "Pendeinte");
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 480, ALLEGRO_ALIGN_CENTRE, "Pendiente");
 	if (material == 1) {
 		al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 510, ALLEGRO_ALIGN_CENTRE, "Plano");
 	}
@@ -630,8 +630,14 @@ void animarCarretera(int vel) {
 		ncarretera1->y = 0;
 	}
 	else {
-		ncarretera1->y += vel;
-		ncarretera2->y += vel;
+		if (velocidad <= 300 && velocidad >= 5) {
+			ncarretera1->y += vel / 5;
+			ncarretera2->y += vel / 5;
+		}
+		else if (velocidad < 5 && velocidad > 0) {
+			ncarretera1->y += vel - 1;
+			ncarretera2->y += vel - 1;
+		}
 	}
 	/*if (ncarretera1->y >= 160) {
 	ncarretera1->y == -80;
@@ -1917,7 +1923,7 @@ int main(int argc, char **argv) {
 
 			else if (eventos.timer.source == undecimoTimer) {
 				cambiovelocidad(movimiento);
-				animarCarretera(velocidad / 2);
+				animarCarretera(velocidad);
 			}
 
 			else if (eventos.timer.source == duodecimoTimer && teclaPiloto[M] == true) {
@@ -1944,7 +1950,7 @@ int main(int argc, char **argv) {
 			guardarPuntajes();
 		}
 
-		if (gas == 0) {
+		if (gas <= 0) {
 			hecho = false;
 			guardarPuntajes();
 		}
