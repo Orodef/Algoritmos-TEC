@@ -1465,7 +1465,7 @@ void moverAutomatico() {
 void cambiarVelocidadPendiente() {//siempre que pendiente sea 3, 45 velocidad
 	if (pendiente == 3) {
 		if (velocidad != 45) {
-			if (velocidad < 45) velocidad -= 2;
+			if (velocidad > 45) velocidad -= 2;
 			else velocidad += 2;
 		}
 	}
