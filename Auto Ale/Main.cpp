@@ -277,10 +277,10 @@ void reproducirCambioMarcha() {
 //Salidas: ninguna
 //Restricciones: ninguna
 void dibujarMenu() {
-	al_draw_text(fuente, al_map_rgb(255, 255, 255), 600, 150, ALLEGRO_ALIGN_CENTRE, "Selccione uno de los siguientes:");
-	al_draw_text(fuente, al_map_rgb(255, 255, 255), 600, 260, ALLEGRO_ALIGN_CENTRE, "1- JUGAR");
-	al_draw_text(fuente, al_map_rgb(255, 255, 255), 600, 320, ALLEGRO_ALIGN_CENTRE, "2- VER TABLA DE PUNTAJES");
-	al_draw_text(fuente, al_map_rgb(255, 255, 255), 600, 380, ALLEGRO_ALIGN_CENTRE, "3- SALIR");
+	al_draw_text(fuente, al_map_rgb(255, 255, 255), 600, 150, ALLEGRO_ALIGN_CENTRE, "Selccione uno de los siguientes");
+	al_draw_text(fuente, al_map_rgb(255, 255, 255), 600, 260, ALLEGRO_ALIGN_CENTRE, "1 -  JUGAR");
+	al_draw_text(fuente, al_map_rgb(255, 255, 255), 600, 320, ALLEGRO_ALIGN_CENTRE, "2 -  VER TABLA DE PUNTAJES");
+	al_draw_text(fuente, al_map_rgb(255, 255, 255), 600, 380, ALLEGRO_ALIGN_CENTRE, "3 -  SALIR");
 	al_flip_display();
 }
 
@@ -292,8 +292,8 @@ void dibujarMenu() {
 void dibujarPuntaje() {
 	char puntajeCadena[10];
 	sprintf(puntajeCadena, "%i""%", puntaje);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 500, ALLEGRO_ALIGN_CENTRE, "Puntaje:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 530, ALLEGRO_ALIGN_CENTRE, puntajeCadena);
+	al_draw_text(fuente, al_map_rgb(255, 0, 0), 100, 500, ALLEGRO_ALIGN_CENTRE, "Puntaje");
+	al_draw_text(fuente, al_map_rgb(255, 255, 255), 100, 530, ALLEGRO_ALIGN_CENTRE, puntajeCadena);
 	al_flip_display();
 }
 
@@ -304,8 +304,8 @@ void dibujarPuntaje() {
 void dibujargas() {
 	char gasCadena[10];
 	sprintf(gasCadena, "%i""%", gas);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 345, ALLEGRO_ALIGN_CENTRE, "Gas:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 375, ALLEGRO_ALIGN_CENTRE, gasCadena);
+	al_draw_text(fuente, al_map_rgb(255, 0, 0), 100, 345, ALLEGRO_ALIGN_CENTRE, "Gas");
+	al_draw_text(fuente, al_map_rgb(255, 255, 255), 100, 375, ALLEGRO_ALIGN_CENTRE, gasCadena);
 	al_flip_display();
 }
 
@@ -414,13 +414,13 @@ void dibujarnumenemigos() {
 //Salidas: ninguna
 //Restricciones: ninguna
 void dibujarcontroles() {
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 50, ALLEGRO_ALIGN_CENTER, "Manejo:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 80, ALLEGRO_ALIGN_CENTER, "A,W,S,D");
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 130, ALLEGRO_ALIGN_CENTER, "Disparo:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 160, ALLEGRO_ALIGN_CENTER, "J,I,K,L");
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 50, ALLEGRO_ALIGN_CENTER, "Manejo");
+	al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 80, ALLEGRO_ALIGN_CENTER, "A  W  S  D");
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 130, ALLEGRO_ALIGN_CENTER, "Disparo");
+	al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 160, ALLEGRO_ALIGN_CENTER, "J  I  K  L");
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 210, ALLEGRO_ALIGN_CENTER, "Piloto");
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 240, ALLEGRO_ALIGN_CENTER, "Automatico:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 270, ALLEGRO_ALIGN_CENTER, "M");
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 240, ALLEGRO_ALIGN_CENTER, "Automatico");
+	al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 270, ALLEGRO_ALIGN_CENTER, "M");
 	al_flip_display();
 }
 
@@ -432,38 +432,38 @@ void dibujarCondiciones() {
 
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 320, ALLEGRO_ALIGN_CENTRE, "Clima");
 	if (clima == 1) {
-		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 350, ALLEGRO_ALIGN_CENTRE, "Soleado");
+		al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 350, ALLEGRO_ALIGN_CENTRE, "Soleado");
 	}
 	else if (clima == 2) {
-		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 350, ALLEGRO_ALIGN_CENTRE, "Lluvioso");
+		al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 350, ALLEGRO_ALIGN_CENTRE, "Lluvioso");
 	}
 	else {
-		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 350, ALLEGRO_ALIGN_CENTRE, "Nevado");
+		al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 350, ALLEGRO_ALIGN_CENTRE, "Nevado");
 	}
 
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 400, ALLEGRO_ALIGN_CENTRE, "Material");
 	if (material == 1) {
-		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 430, ALLEGRO_ALIGN_CENTRE, "Autopista");
+		al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 430, ALLEGRO_ALIGN_CENTRE, "Autopista");
 	}
 	else if (material == 2) {
-		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 430, ALLEGRO_ALIGN_CENTRE, "Lastre");
+		al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 430, ALLEGRO_ALIGN_CENTRE, "Lastre");
 	}
 	else if (material == 3) {
-		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 430, ALLEGRO_ALIGN_CENTRE, "Arena");
+		al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 430, ALLEGRO_ALIGN_CENTRE, "Arena");
 	}
 	else {
-		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 430, ALLEGRO_ALIGN_CENTRE, "Tierra");
+		al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 430, ALLEGRO_ALIGN_CENTRE, "Tierra");
 	}
 
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 480, ALLEGRO_ALIGN_CENTRE, "Pendiente");
+	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 480, ALLEGRO_ALIGN_CENTRE, "Pendeinte");
 	if (material == 1) {
-		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 510, ALLEGRO_ALIGN_CENTRE, "Plano");
+		al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 510, ALLEGRO_ALIGN_CENTRE, "Plano");
 	}
 	else if (material == 2) {
-		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 510, ALLEGRO_ALIGN_CENTRE, "Bajada");
+		al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 510, ALLEGRO_ALIGN_CENTRE, "Bajada");
 	}
 	else {
-		al_draw_text(fuente, al_map_rgb(0, 255, 0), 1000, 510, ALLEGRO_ALIGN_CENTRE, "Subida");
+		al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 510, ALLEGRO_ALIGN_CENTRE, "Subida");
 	}
 
 	al_flip_display();
@@ -476,8 +476,8 @@ void dibujarCondiciones() {
 void dibujarSalud() {
 	char saludCadena[10];
 	sprintf(saludCadena, "%.2f", personaje->salud);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 25, ALLEGRO_ALIGN_CENTRE, "Salud:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 55, ALLEGRO_ALIGN_CENTRE, saludCadena);
+	al_draw_text(fuente, al_map_rgb(255, 0, 0), 100, 25, ALLEGRO_ALIGN_CENTRE, "Salud");
+	al_draw_text(fuente, al_map_rgb(255, 255, 255), 100, 55, ALLEGRO_ALIGN_CENTRE, saludCadena);
 	al_flip_display();
 }
 
@@ -488,8 +488,8 @@ void dibujarSalud() {
 void dibujarVelocidad() {
 	char velCadena[10];
 	sprintf(velCadena, "%.f", velocidad);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 185, ALLEGRO_ALIGN_CENTRE, "Velocidad:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 215, ALLEGRO_ALIGN_CENTRE, velCadena);
+	al_draw_text(fuente, al_map_rgb(255, 0, 0), 100, 185, ALLEGRO_ALIGN_CENTRE, "Velocidad");
+	al_draw_text(fuente, al_map_rgb(255, 255, 255), 100, 215, ALLEGRO_ALIGN_CENTRE, velCadena);
 	al_flip_display();
 }
 
@@ -500,8 +500,8 @@ void dibujarVelocidad() {
 void dibujarMarcha() {
 	char marCadena[10];
 	sprintf(marCadena, "%.i", marcha);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 265, ALLEGRO_ALIGN_CENTRE, "Marcha:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 295, ALLEGRO_ALIGN_CENTRE, marCadena);
+	al_draw_text(fuente, al_map_rgb(255, 0, 0), 100, 265, ALLEGRO_ALIGN_CENTRE, "Marcha");
+	al_draw_text(fuente, al_map_rgb(255, 255, 255), 100, 295, ALLEGRO_ALIGN_CENTRE, marCadena);
 	al_flip_display();
 }
 
@@ -512,8 +512,8 @@ void dibujarMarcha() {
 void dibujarVidas() {
 	char vidasCadena[10];
 	sprintf(vidasCadena, "%i", personaje->vidas);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 100, 105, ALLEGRO_ALIGN_CENTRE, "Vidas:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 100, 135, ALLEGRO_ALIGN_CENTRE, vidasCadena);
+	al_draw_text(fuente, al_map_rgb(255, 0, 0), 100, 105, ALLEGRO_ALIGN_CENTRE, "Vidas");
+	al_draw_text(fuente, al_map_rgb(255, 255, 255), 100, 135, ALLEGRO_ALIGN_CENTRE, vidasCadena);
 	al_flip_display();
 }
 
@@ -621,23 +621,17 @@ void dibujarcarretera2() {
 }
 
 void animarCarretera(int vel) {
-	if (ncarretera1->y >= largoPantalla-10) {
+	if (ncarretera1->y >= largoPantalla) {
 		ncarretera1->y = -600;
 		ncarretera2->y = 0;
 	}
-	if (ncarretera2->y >= largoPantalla-10) {
+	if (ncarretera2->y >= largoPantalla) {
 		ncarretera2->y = -600;
 		ncarretera1->y = 0;
 	}
 	else {
-		if (velocidad <= 300 && velocidad>=5) {
-			ncarretera1->y += vel/5;
-			ncarretera2->y += vel/5;
-		}
-		else if (velocidad<5 && velocidad>0) {
-			ncarretera1->y += vel-1;
-			ncarretera2->y += vel-1;
-		}
+		ncarretera1->y += vel;
+		ncarretera2->y += vel;
 	}
 	/*if (ncarretera1->y >= 160) {
 	ncarretera1->y == -80;
@@ -1469,7 +1463,7 @@ void moverAutomatico() {
 }
 
 void cambiarVelocidadPendiente() {//siempre que pendiente sea 3, 45 velocidad
-	if (pendiente == 3 && velocidad > 0 && velocidad < 300) {
+	if (pendiente == 3) {
 		if (velocidad != 45) {
 			if (velocidad < 45) velocidad -= 2;
 			else velocidad += 2;
@@ -1478,7 +1472,7 @@ void cambiarVelocidadPendiente() {//siempre que pendiente sea 3, 45 velocidad
 }
 
 void cambiarVelocidadClima() {
-	if (pendiente != 3 && velocidad > 0 && velocidad < 300) {
+	if (pendiente != 3) {
 		if (clima == 2) {
 			if (velocidad != 50) {
 				if (velocidad > 50) {
@@ -1499,7 +1493,7 @@ void cambiarVelocidadClima() {
 }
 
 void cambiarVelocidadMaterial() {
-	if (clima == 1 && pendiente != 3 && velocidad > 0 && velocidad < 300) {
+	if (clima == 1 && pendiente != 3) {
 		if (material == 2) {
 			if (velocidad != 60) {
 				if (velocidad > 60) velocidad -= 2;
@@ -1563,7 +1557,7 @@ int main(int argc, char **argv) {
 	al_init_ttf_addon();
 	//*******************
 
-	fuente = al_load_font("8bitoperator_jve.ttf", 30, NULL);
+	fuente = al_load_font("Over There.ttf", 15, NULL);
 
 
 	al_init_primitives_addon();
@@ -1923,7 +1917,7 @@ int main(int argc, char **argv) {
 
 			else if (eventos.timer.source == undecimoTimer) {
 				cambiovelocidad(movimiento);
-				animarCarretera(velocidad);//velocidad/2
+				animarCarretera(velocidad / 2);
 			}
 
 			else if (eventos.timer.source == duodecimoTimer && teclaPiloto[M] == true) {
@@ -1950,7 +1944,7 @@ int main(int argc, char **argv) {
 			guardarPuntajes();
 		}
 
-		if (gas <= 0) {
+		if (gas == 0) {
 			hecho = false;
 			guardarPuntajes();
 		}
