@@ -100,12 +100,12 @@ using namespace std;
 
 //definicion de las teclas utilizadas para el movimiento del personaje y para realizar los disparos
 enum Direccion { W, S, D, A };
-enum Teclas { J, I, K, L };
+enum Teclas { J, I, L };
 enum Piloto { M };
 
 //Se definen como false al inicio las teclas, osea, que no han sido presionadas
 bool teclasDireccion[4] = { false, false, false, false };
-bool teclasDisparo[4] = { false, false, false, false };
+bool teclasDisparo[3] = { false, false, false };
 bool teclaPiloto[1] = { false };
 
 //Definicion de variables globales necesarias en el juego
@@ -417,7 +417,7 @@ void dibujarcontroles() {
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 50, ALLEGRO_ALIGN_CENTER, "Manejo");
 	al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 80, ALLEGRO_ALIGN_CENTER, "A  W  S  D");
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 130, ALLEGRO_ALIGN_CENTER, "Disparo");
-	al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 160, ALLEGRO_ALIGN_CENTER, "J  I  K  L");
+	al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 160, ALLEGRO_ALIGN_CENTER, "J  I  L");
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 210, ALLEGRO_ALIGN_CENTER, "Piloto");
 	al_draw_text(fuente, al_map_rgb(0, 0, 255), 1000, 240, ALLEGRO_ALIGN_CENTER, "Automatico");
 	al_draw_text(fuente, al_map_rgb(255, 255, 255), 1000, 270, ALLEGRO_ALIGN_CENTER, "M");
@@ -842,7 +842,7 @@ void dispararEnemigoTriangulo() {
 //Salidas: ninguna
 //Restricciones: se evalúa si existe algún espacio disponible en el array (o sea, si es NULL)
 void dispararPersonaje(int direccion) {
-	if (direccion == S || direccion == W || direccion == D || direccion == A) {
+	if (direccion == W || direccion == D || direccion == A) {
 
 		for (int i = 0; i < numeroBalasPersonaje; i++) {
 
@@ -976,10 +976,10 @@ void moverEnemigoTriangulo(int movimiento, int tiempo) {
 //Salidas: ninguna
 //Restricciones: ninguna
 void moverPersonaje(int movimiento) {
-	if (teclasDireccion[S]) {
+	if (teclasDireccion[S] && (teclaPiloto[M] == false)) {
 		if (personaje->y < 450) personaje->y += movimiento;
 	}
-	if (teclasDireccion[W]) {
+	if (teclasDireccion[W] && (teclaPiloto[M] == false)) {
 		if (personaje->y >  450) personaje->y -= movimiento;
 	}
 	if (teclasDireccion[D] && velocidad != 0) {
@@ -1032,22 +1032,6 @@ void cambiovelocidad(int movimiento) {
 	}
 	cambioMarcha();
 }
-/*CAMBIO DE VELOCIDAD CONFORME LA MARCHA
-void cambiovelocidad(int movimiento) {
-if (teclasDireccion[S] && velocidad > 1) { // si se presiona la letra S se le va a empezar a restar velocidad cada vez que se presione o si se mantiene presionado. La velocidad no baja de 0
-velocidad -= 2;
-}
-if (teclasDireccion[W] && velocidad < 299) {// si se presiona la letra W se le va a empezar a sumar velocidad cada vez que se presione o si se mantiene presionda
-if (marcha >= 1 && marcha <= 3) {
-velocidad += 2;
-}
-if (marcha >= 4 && marcha <= 5) {
-velocidad += 4;
-}
-}
-cambioMarcha();
-}
-*/
 
 
 //moverBalaPersonaje: función encargada de cambiar el valor de los ejes de las balas disponibles en el array
@@ -1116,31 +1100,32 @@ void turboPersonaje(float direccion) {
 
 void restargas(int resta) {
 	int marcha = cambioMarcha();
-	if (marcha == 1) gas -= resta;
+	if (marcha == 1 && velocidad != 0) gas -= resta;
 	if (marcha == 2) gas -= resta * 0.8;
 	if (marcha == 3) gas -= resta * 0.6;
 	if (marcha == 4) gas -= resta * 0.4;
 	if (marcha == 5) gas -= resta * 0.2;
 }
 
-void sumargasusado(int suma) {
-	gasusado += suma;
-}
-
-
 void consumoGasClima() {
-	if (clima == 2) gas -= 1;
-	if (clima == 3) gas -= 2;
+	if (velocidad != 0) {
+		if (clima == 2) gas -= 1;
+		if (clima == 3) gas -= 2;
+	}
 }
 
 void consumoGasMaterial() {
-	if (material == 2) gas -= 1.2;
-	if (material == 3) gas -= 2;
-	if (material == 4) gas -= 1.5;
+	if (velocidad != 0) {
+		if (material == 2) gas -= 1.2;
+		if (material == 3) gas -= 2;
+		if (material == 4) gas -= 1.5;
+	}
 }
 
 void consumoGasPendiente() {
-	if (pendiente == 3) gas -= 2;
+	if (velocidad != 0) {
+		if (pendiente == 3) gas -= 2;
+	}
 }
 
 
@@ -1231,9 +1216,9 @@ void generarBonus() {
 
 	for (int i = 0; i < numeroBonus; i++) {
 		if (bonus[i] == NULL) {
-			x = rand() % 82 + 30;
+			x = rand() % 500 + 300;
 			y = 450;
-			bonus[i] = new Bonus(x * 10, y, i % 2, saludBonus);
+			bonus[i] = new Bonus(x , y, i % 2, saludBonus);
 			bonusgenerados++;
 			bonusperdidos++;
 			break;
@@ -1781,11 +1766,6 @@ int main(int argc, char **argv) {
 				disparo = W;
 				break;
 
-			case ALLEGRO_KEY_K:
-				disparo = S;
-				//turb = true;
-				break;
-
 			case ALLEGRO_KEY_L:
 				disparo = D;
 				break;
@@ -1868,7 +1848,9 @@ int main(int argc, char **argv) {
 			else if (eventos.timer.source == quintoTimer) {
 				sumarPuntaje(sumaPuntajeTimer);
 				restargas(restagastimer);
-				sumargasusado(sumagasusadotimer);
+				consumoGasClima();
+				consumoGasMaterial();
+				consumoGasPendiente();
 			}
 
 			else if (eventos.timer.source == sextoTimer) {
@@ -1908,7 +1890,7 @@ int main(int argc, char **argv) {
 				moverEnemigoTriangulo(movimiento, 3);
 			}
 
-			else if (eventos.timer.source == novenoTimer && teclaPiloto[M] == true) {
+			else if (eventos.timer.source == novenoTimer && (teclaPiloto[M] == true)) {
 				sensorPosicion();
 				funcionamientoSensor();
 				moverAutomatico();
@@ -1926,7 +1908,7 @@ int main(int argc, char **argv) {
 				animarCarretera(velocidad);
 			}
 
-			else if (eventos.timer.source == duodecimoTimer && teclaPiloto[M] == true) {
+			else if (eventos.timer.source == duodecimoTimer && (teclaPiloto[M] == true)) {
 				cambiarVelocidadPendiente();
 				cambiarVelocidadClima();
 				cambiarVelocidadMaterial();
