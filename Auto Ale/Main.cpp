@@ -587,8 +587,8 @@ void dibujarMejoresPuntajes() {
 		sprintf(posicionCadena, "%i", i + 1);
 
 		al_draw_text(fuente, al_map_rgb(0, 255, 0), 20, i * 30, ALLEGRO_ALIGN_CENTRE, posicionCadena);
-		al_draw_text(fuente, al_map_rgb(0, 255, 0), 35, i * 30, ALLEGRO_ALIGN_CENTRE, " - ");
-		al_draw_text(fuente, al_map_rgb(0, 0, 255), 70, i * 30, ALLEGRO_ALIGN_CENTRE, puntajeCadena);
+		al_draw_text(fuente, al_map_rgb(0, 255, 0), 45, i * 30, ALLEGRO_ALIGN_CENTRE, " - ");
+		al_draw_text(fuente, al_map_rgb(0, 0, 255), 105, i * 30, ALLEGRO_ALIGN_CENTRE, puntajeCadena);
 
 	}
 	al_flip_display();
