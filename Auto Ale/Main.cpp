@@ -309,105 +309,6 @@ void dibujargas() {
 	al_flip_display();
 }
 
-//dibujargasusado: función encargada de dibujar en pantalla la gasolina gastada
-//Entradas: ninguna
-//Salidas: ninguna
-//Restricciones: ninguna
-void dibujargasusado() {
-	char gasusadoCadena[10];
-	sprintf(gasusadoCadena, "%i""%", gasusado);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 25, ALLEGRO_ALIGN_LEFT, "Gas Utilizado:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 190, 25, ALLEGRO_ALIGN_LEFT, gasusadoCadena);
-	al_flip_display();
-}
-
-
-//dibujar balas disparadas: función encargada de dibujar en pantalla las balas Disparadas
-//Entradas: ninguna
-//Salidas: ninguna
-//Restricciones: ninguna
-void dibujarbalasdisp() {
-	char balasgastCadena[10];
-	sprintf(balasgastCadena, "%i""%", balasdisp);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 100, ALLEGRO_ALIGN_LEFT, "Balas Disparadas:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 250, 100, ALLEGRO_ALIGN_LEFT, balasgastCadena);
-	al_flip_display();
-}
-
-//dibujar el numero de enemigos eliminados: función encargada de dibujar en pantalla el numero de enemigos que ha sido eliminado
-//Entradas: ninguna
-//Salidas: ninguna
-//Restricciones: ninguna
-void dibujarenemigosel() {
-	char enemigoselCadena[10];
-	sprintf(enemigoselCadena, "%i""%", enemigosel);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 200, ALLEGRO_ALIGN_LEFT, "Enemigos eliminados:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 270, 200, ALLEGRO_ALIGN_LEFT, enemigoselCadena);
-	al_flip_display();
-}
-
-//dibujar numero de bonus optenidos: función encargada de dibujar en pantalla los bonus optenidos
-//Entradas: ninguna
-//Salidas: ninguna
-//Restricciones: ninguna
-void dibujarnumbonus() {
-	char bonusCadena[10];
-	sprintf(bonusCadena, "%i""%", bonusop);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 150, ALLEGRO_ALIGN_LEFT, "Bonus optenidos:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 250, 150, ALLEGRO_ALIGN_LEFT, bonusCadena);
-	al_flip_display();
-}
-
-//dibujar balas perdidas: función encargada de dibujar en pantalla el numero de balas que no chocaron contra un enemigo
-//Entradas: ninguna
-//Salidas: ninguna
-//Restricciones: ninguna
-void dibujarbalasperdidas() {
-	char balCadena[10];
-	sprintf(balCadena, "%i""%", balasperdidas);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 300, ALLEGRO_ALIGN_LEFT, "Balas perdidas:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 250, 300, ALLEGRO_ALIGN_LEFT, balCadena);
-	al_flip_display();
-}
-
-//dibujar bonus generados: función encargada de dibujar en pantalla el numero de bonus generados
-//Entradas: ninguna
-//Salidas: ninguna
-//Restricciones: ninguna
-void dibujarbonusgenerados() {
-	char bonCadena[10];
-	sprintf(bonCadena, "%i""%", bonusgenerados);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 350, ALLEGRO_ALIGN_LEFT, "Bonus generados:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 250, 350, ALLEGRO_ALIGN_LEFT, bonCadena);
-	al_flip_display();
-}
-
-//dibujar bonus perdidos: función encargada de dibujar en pantalla el numero de bonus perdidos
-//Entradas: ninguna
-//Salidas: ninguna
-//Restricciones: ninguna
-void dibujarbonusperdidos() {
-	char bonperCadena[10];
-	sprintf(bonperCadena, "%i""%", bonusperdidos);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 400, ALLEGRO_ALIGN_LEFT, "Bonus perdidos:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 250, 400, ALLEGRO_ALIGN_LEFT, bonperCadena);
-	al_flip_display();
-}
-
-
-
-//dibujar numero enemigos: función encargada de dibujar en pantalla el numero de enemigos presentados durante el juego
-//Entradas: ninguna
-//Salidas: ninguna
-//Restricciones: ninguna
-void dibujarnumenemigos() {
-	char enCadena[10];
-	sprintf(enCadena, "%i""%", numenemigos);
-	al_draw_text(fuente, al_map_rgb(0, 0, 255), 0, 250, ALLEGRO_ALIGN_LEFT, "Numero enemigos:");
-	al_draw_text(fuente, al_map_rgb(0, 255, 0), 250, 250, ALLEGRO_ALIGN_LEFT, enCadena);
-	al_flip_display();
-}
-
 
 //dibujar controles del juego: función encargada de dibujar en pantalla los controles del juego
 //Entradas: ninguna
@@ -518,17 +419,6 @@ void dibujarVidas() {
 }
 
 
-//dibujarRectanguloJuego: función encargada de dibujar en pantalla el delimitador entre los enemigos triángulo y los demás componentes del juego
-//Entradas: ninguna
-//Salidas: ninguna
-//Restricciones: ninguna
-void dibujarRectanguloJuego() {
-	al_set_target_bitmap(al_get_backbuffer(pantalla));
-	al_draw_filled_rectangle(0, posicionRectanguloJuego, anchoPantalla, posicionRectanguloJuego + 5, al_map_rgb(0, 255, 0));
-	al_flip_display();
-}
-
-
 //dibujarBonus: función encargada de dibujar en pantalla los bonus disponibles
 //Entradas: ninguna
 //Salidas: ninguna
@@ -582,20 +472,6 @@ void dibujarPrincipal(int x, int y, int direccion) {
 
 }
 
-/*
-//dibujar Carretera: función encargada de dibujar en pantalla la carretera
-//Entradas: ninguna
-//Salidas: ninguna
-//Restricciones: ninguna
-void dibujarcarretera() {
-al_set_target_bitmap(carretera);
-
-al_set_target_bitmap(al_get_backbuffer(pantalla));
-al_draw_bitmap(carretera, 300, 0, NULL);
-al_flip_display();
-
-}*/
-
 //dibujar Carretera: función encargada de dibujar en pantalla la carretera
 //Entradas: ninguna
 //Salidas: ninguna
@@ -639,16 +515,6 @@ void animarCarretera(int vel) {
 			ncarretera2->y += vel - 1;
 		}
 	}
-	/*if (ncarretera1->y >= 160) {
-	ncarretera1->y == -80;
-	}
-	if (ncarretera2->y >= 160) {
-	ncarretera2->y == -80;
-	}
-	else {
-	ncarretera1->y += movimiento;
-	ncarretera2->y += movimiento;
-	}*/
 }
 
 
@@ -800,6 +666,9 @@ void cargarPuntajes() {
 void sumarPuntaje(int suma) {
 	puntaje += suma;
 }
+
+
+
 //	_________________________________________________________________________________________		DISPAROS
 
 
@@ -816,6 +685,7 @@ void crearBalaEnemigoTriangulo(int x, int y) {
 		}
 	}
 }
+
 
 //dispararEnemigoTriangulo: función encargada de llamar a la función para crear balas del enemigo en caso de cumplirse cierta condición
 //Entradas: ninguna
@@ -857,6 +727,7 @@ void dispararPersonaje(int direccion) {
 		}
 	}
 }
+
 
 
 //	_________________________________________________________________________________________		DESACTIVACION
@@ -989,6 +860,8 @@ void moverPersonaje(int movimiento) {
 		if (personaje->x > 300) personaje->x -= movimiento;
 	}
 }
+
+
 //cambiar marcha: función encargada de cambiar la marcha
 //Entradas: velocidad, para determinar la marcha
 //Salidas: ninguna
@@ -1098,7 +971,11 @@ void turboPersonaje(float direccion) {
 
 
 
-void restargas(int resta) {
+//restarGasMarcha: función encargada de calcular el comsumo del auto basándose en la marcha en la que esté
+//Entradas: la cantidad que va a restar por ejecución
+//Salidas: ninguna
+//Restricciones: la entrada debe ser un número entre 1 y 5
+void restarGasMarcha(int resta) {
 	int marcha = cambioMarcha();
 	if (marcha == 1 && velocidad != 0) gas -= resta;
 	if (marcha == 2) gas -= resta * 0.8;
@@ -1107,6 +984,11 @@ void restargas(int resta) {
 	if (marcha == 5) gas -= resta * 0.2;
 }
 
+
+//consumoGasClima: función encargada de calcular el comsumo del auto basándose en el clima en el que se encuentre en ese momento
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: niguna
 void consumoGasClima() {
 	if (velocidad != 0) {
 		if (clima == 2) gas -= 1;
@@ -1114,6 +996,11 @@ void consumoGasClima() {
 	}
 }
 
+
+//consumoGasMaterial: función encargada de calcular el comsumo del auto basándose en el material de la carretera en la que se encuentre en ese momento
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: niguna
 void consumoGasMaterial() {
 	if (velocidad != 0) {
 		if (material == 2) gas -= 1.2;
@@ -1122,6 +1009,11 @@ void consumoGasMaterial() {
 	}
 }
 
+
+//consumoGasPendiente: función encargada de calcular el comsumo del auto basándose en la pendiente en la que se encuentre en ese momento
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: niguna
 void consumoGasPendiente() {
 	if (velocidad != 0) {
 		if (pendiente == 3) gas -= 2;
@@ -1436,12 +1328,11 @@ bool sensorPosicion() {
 	}
 }
 
-void funcionamientoSensor() {
-	if (sensorPosicion()) {
-		cout << "funciona" << endl;
-	}
-}
 
+//moverAutomatico: función encargada de mover el auto en base a sensor posición, evitando colisiones
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: niguna
 void moverAutomatico() {
 	if (sensorPosicion()) {
 		if (personaje->x < anchoPantalla / 2) {
@@ -1453,6 +1344,11 @@ void moverAutomatico() {
 	}
 }
 
+
+//cambiarVelocidadPendiente: función encargada de cambiar la velocidad del auto en base a la pendiente
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: niguna
 void cambiarVelocidadPendiente() {//siempre que pendiente sea 3, 45 velocidad
 	if (pendiente == 3) {
 		if (velocidad != 45) {
@@ -1462,6 +1358,11 @@ void cambiarVelocidadPendiente() {//siempre que pendiente sea 3, 45 velocidad
 	}
 }
 
+
+//cambiarVelocidadClima: función encargada de cambiar la velocidad del auto en base al clima
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: niguna
 void cambiarVelocidadClima() {
 	if (pendiente != 3) {
 		if (clima == 2) {
@@ -1483,6 +1384,10 @@ void cambiarVelocidadClima() {
 	}
 }
 
+//cambiarVelocidadMaterial: función encargada de cambiar la velocidad del auto en base al material de la carretera
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: niguna
 void cambiarVelocidadMaterial() {
 	if (clima == 1 && pendiente != 3) {
 		if (material == 2) {
@@ -1847,7 +1752,7 @@ int main(int argc, char **argv) {
 
 			else if (eventos.timer.source == quintoTimer) {
 				sumarPuntaje(sumaPuntajeTimer);
-				restargas(restagastimer);
+				restarGasMarcha(restagastimer);
 				consumoGasClima();
 				consumoGasMaterial();
 				consumoGasPendiente();
@@ -1860,28 +1765,18 @@ int main(int argc, char **argv) {
 			else if (eventos.timer.source == septimoTimer) {
 				dibujarcarretera();
 				dibujarcarretera2();
-				//dibujarcarretera();
 				dibujarPrincipal(personaje->x, personaje->y, direccion);
 				dibujarEnemigoTriangulo();
 				dibujarBalasPersonaje();
 				dibujarBalasEnemigoTriangulo();
 				dibujarBonus();
-				//dibujarRectanguloJuego();
 				dibujarPuntaje();
 				dibujargas();
 				dibujarMarcha();
-				//dibujargasusado();
 				dibujarSalud();
 				dibujarVidas();
 				dibujarVelocidad();
-				//dibujarbalasdisp();
 				dibujarcontroles();
-				//dibujarnumbonus();
-				//dibujarenemigosel();
-				//dibujarbalasperdidas();
-				//dibujarnumenemigos();
-				//dibujarbonusgenerados();
-				//dibujarbonusperdidos();
 				dibujarCondiciones();
 
 			}
@@ -1892,7 +1787,6 @@ int main(int argc, char **argv) {
 
 			else if (eventos.timer.source == novenoTimer && (teclaPiloto[M] == true)) {
 				sensorPosicion();
-				funcionamientoSensor();
 				moverAutomatico();
 
 			}
