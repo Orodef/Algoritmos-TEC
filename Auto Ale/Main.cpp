@@ -173,6 +173,9 @@ ALLEGRO_BITMAP *ultimo;
 ALLEGRO_SAMPLE *musicaJuego;
 ALLEGRO_SAMPLE *disparoPersonaje;
 ALLEGRO_SAMPLE *marchaCambia;
+ALLEGRO_SAMPLE *voz_saludbaja;
+ALLEGRO_SAMPLE *voz_gasbajo;
+ALLEGRO_SAMPLE *voz_bajevel;
 ALLEGRO_SAMPLE *turbPersonaje;
 ALLEGRO_SAMPLE *disparoEnemigo;
 ALLEGRO_SAMPLE *colisionEnemigo;
@@ -250,7 +253,7 @@ void reproducirDisparoPersonaje() {
 	al_play_sample_instance(instanciaSonido);
 }
 
-//reproducirCambioMarcha: función encargada de reproducir el sonido para el disparo del personaje
+//reproducirCambioMarcha: función encargada de reproducir el sonido para cambio de marcha
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
@@ -261,7 +264,38 @@ void reproducirCambioMarcha() {
 	al_play_sample_instance(instanciaSonido);
 }
 
+//reproducirSaludBaja: función encargada de reproducir el sonido de voz del dash: salud baja
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: ninguna
+void reproducirSaludBaja() {
+	instanciaSonido = al_create_sample_instance(voz_saludbaja);
+	al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
+	al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
+	al_play_sample_instance(instanciaSonido);
+}
 
+//reproducirGasBajo: función encargada de reproducir el sonido de voz del dash: salud baja
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: ninguna
+void reproducirGasBajo() {
+	instanciaSonido = al_create_sample_instance(voz_gasbajo);
+	al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
+	al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
+	al_play_sample_instance(instanciaSonido);
+}
+
+//reproducirBajeVel: función encargada de reproducir el sonido de voz del dash: baje la velocidad
+//Entradas: ninguna
+//Salidas: ninguna
+//Restricciones: ninguna
+void reproducirBajeVel() {
+	instanciaSonido = al_create_sample_instance(voz_bajevel);
+	al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
+	al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
+	al_play_sample_instance(instanciaSonido);
+}
 
 
 
