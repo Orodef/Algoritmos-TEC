@@ -1900,6 +1900,9 @@ int main(int argc, char **argv) {
 	al_destroy_sample(turbPersonaje);
 	al_destroy_sample(disparoEnemigo);
 	al_destroy_sample(marchaCambia);
+	al_destroy_sample(voz_bajevel);
+	al_destroy_sample(voz_gasbajo);
+	al_destroy_sample(voz_saludbaja);
 	al_destroy_sample(colisionEnemigo);
 
 	al_destroy_sample_instance(instanciaSonido);
