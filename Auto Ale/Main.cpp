@@ -76,6 +76,7 @@ using namespace std;
 #define FPS7 5.0
 #define FPS8 0.1
 #define FPS9 35.0
+#define FPS10 0.5
 
 //definicion de otros parametros necesarios en el juego
 #define dannoBalaEnemigo 5
@@ -1620,7 +1621,7 @@ int main(int argc, char **argv) {
 	ALLEGRO_TIMER *decimoTimer = al_create_timer(1.0 / FPS8);
 	ALLEGRO_TIMER *undecimoTimer = al_create_timer(1.0 / FPS9);
 	ALLEGRO_TIMER *duodecimoTimer = al_create_timer(1.0 / FPS);
-	ALLEGRO_TIMER *treceavoTimer = al_create_timer(1.0 / FPS8);
+	ALLEGRO_TIMER *treceavoTimer = al_create_timer(1.0 / FPS10);
 	//**********************************************************
 
 	//Se crea una cola de eventos
