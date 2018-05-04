@@ -269,7 +269,7 @@ void reproducirCambioMarcha() {
 //Salidas: ninguna
 //Restricciones: ninguna
 void reproducirSaludBaja() {
-	if (personaje->salud <=15) {
+	if (personaje->salud <= 15) {
 		instanciaSonido = al_create_sample_instance(voz_saludbaja);
 		al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
 		al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
@@ -301,7 +301,7 @@ void reproducirBajeVel() {
 		al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
 		al_play_sample_instance(instanciaSonido);
 	}
-	
+
 }
 
 //	_________________________________________________________________________________________			DIBUJOS A PANTALLA
@@ -1537,6 +1537,9 @@ int main(int argc, char **argv) {
 	turbPersonaje = al_load_sample("Musica/bala.ogg");
 	disparoPersonaje = al_load_sample("Musica/bala.ogg");
 	marchaCambia = al_load_sample("Musica/cambiaMarcha.ogg");
+	voz_bajevel = al_load_sample("Musica/bajevelocidad.ogg");
+	voz_gasbajo = al_load_sample("Musica/nivelgasbajo.ogg");
+	voz_saludbaja = al_load_sample("Musica/saludbaja.ogg");
 	disparoEnemigo = al_load_sample("Musica/Laser2.WAV");
 	colisionEnemigo = al_load_sample("Musica/ow.WAV");
 	//*******************
@@ -1617,7 +1620,7 @@ int main(int argc, char **argv) {
 	ALLEGRO_TIMER *decimoTimer = al_create_timer(1.0 / FPS8);
 	ALLEGRO_TIMER *undecimoTimer = al_create_timer(1.0 / FPS9);
 	ALLEGRO_TIMER *duodecimoTimer = al_create_timer(1.0 / FPS);
-	ALLEGRO_TIMER *treceavoTimer = al_create_timer(1.0 / FPS4);
+	ALLEGRO_TIMER *treceavoTimer = al_create_timer(1.0 / FPS8);
 	//**********************************************************
 
 	//Se crea una cola de eventos
