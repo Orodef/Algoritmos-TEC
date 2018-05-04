@@ -253,7 +253,7 @@ void reproducirDisparoPersonaje() {
 	al_play_sample_instance(instanciaSonido);
 }
 
-//reproducirCambioMarcha: función encargada de reproducir el sonido para cambio de marcha
+//reproducirCambioMarcha: función encargada de reproducir el sonido para el disparo del personaje
 //Entradas: ninguna
 //Salidas: ninguna
 //Restricciones: ninguna
@@ -269,10 +269,12 @@ void reproducirCambioMarcha() {
 //Salidas: ninguna
 //Restricciones: ninguna
 void reproducirSaludBaja() {
-	instanciaSonido = al_create_sample_instance(voz_saludbaja);
-	al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
-	al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
-	al_play_sample_instance(instanciaSonido);
+	if (personaje->salud <=15) {
+		instanciaSonido = al_create_sample_instance(voz_saludbaja);
+		al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
+		al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
+		al_play_sample_instance(instanciaSonido);
+	}
 }
 
 //reproducirGasBajo: función encargada de reproducir el sonido de voz del dash: salud baja
@@ -280,10 +282,12 @@ void reproducirSaludBaja() {
 //Salidas: ninguna
 //Restricciones: ninguna
 void reproducirGasBajo() {
-	instanciaSonido = al_create_sample_instance(voz_gasbajo);
-	al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
-	al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
-	al_play_sample_instance(instanciaSonido);
+	if (gas <= 15) {
+		instanciaSonido = al_create_sample_instance(voz_gasbajo);
+		al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
+		al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
+		al_play_sample_instance(instanciaSonido);
+	}
 }
 
 //reproducirBajeVel: función encargada de reproducir el sonido de voz del dash: baje la velocidad
@@ -291,13 +295,14 @@ void reproducirGasBajo() {
 //Salidas: ninguna
 //Restricciones: ninguna
 void reproducirBajeVel() {
-	instanciaSonido = al_create_sample_instance(voz_bajevel);
-	al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
-	al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
-	al_play_sample_instance(instanciaSonido);
+	if (velocidad == 300) {
+		instanciaSonido = al_create_sample_instance(voz_bajevel);
+		al_set_sample_instance_playmode(instanciaSonido, ALLEGRO_PLAYMODE_ONCE);
+		al_attach_sample_instance_to_mixer(instanciaSonido, al_get_default_mixer());
+		al_play_sample_instance(instanciaSonido);
+	}
+	
 }
-
-
 
 //	_________________________________________________________________________________________			DIBUJOS A PANTALLA
 
@@ -1144,7 +1149,7 @@ void generarBonus() {
 		if (bonus[i] == NULL) {
 			x = rand() % 500 + 300;
 			y = 450;
-			bonus[i] = new Bonus(x , y, i % 2, saludBonus);
+			bonus[i] = new Bonus(x, y, i % 2, saludBonus);
 			bonusgenerados++;
 			bonusperdidos++;
 			break;
@@ -1612,6 +1617,7 @@ int main(int argc, char **argv) {
 	ALLEGRO_TIMER *decimoTimer = al_create_timer(1.0 / FPS8);
 	ALLEGRO_TIMER *undecimoTimer = al_create_timer(1.0 / FPS9);
 	ALLEGRO_TIMER *duodecimoTimer = al_create_timer(1.0 / FPS);
+	ALLEGRO_TIMER *treceavoTimer = al_create_timer(1.0 / FPS4);
 	//**********************************************************
 
 	//Se crea una cola de eventos
@@ -1631,6 +1637,7 @@ int main(int argc, char **argv) {
 	al_register_event_source(colaEventos, al_get_timer_event_source(decimoTimer));
 	al_register_event_source(colaEventos, al_get_timer_event_source(undecimoTimer));
 	al_register_event_source(colaEventos, al_get_timer_event_source(duodecimoTimer));
+	al_register_event_source(colaEventos, al_get_timer_event_source(treceavoTimer));
 	al_register_event_source(colaEventos, al_get_keyboard_event_source());
 	//**********************************************************
 
@@ -1649,6 +1656,8 @@ int main(int argc, char **argv) {
 	al_start_timer(decimoTimer);
 	al_start_timer(undecimoTimer);
 	al_start_timer(duodecimoTimer);
+	al_start_timer(treceavoTimer);
+
 	//**********************************************************
 
 	//Llamado a las funciones que inicializan los componentes lógicos del juego
@@ -1841,6 +1850,11 @@ int main(int argc, char **argv) {
 				cambiarVelocidadClima();
 				cambiarVelocidadMaterial();
 			}
+			else if (eventos.timer.source == treceavoTimer) {
+				reproducirBajeVel();
+				reproducirGasBajo();
+				reproducirSaludBaja();
+			}
 		}
 
 		cambiarSpriteEnemigoTriangulo();
@@ -1919,6 +1933,7 @@ int main(int argc, char **argv) {
 	al_destroy_timer(decimoTimer);
 	al_destroy_timer(undecimoTimer);
 	al_destroy_timer(duodecimoTimer);
+	al_destroy_timer(treceavoTimer);
 
 	return 0;
 }
