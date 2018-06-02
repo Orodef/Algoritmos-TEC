@@ -1,0 +1,5 @@
+﻿  Main.cpp
+c:\users\ale-h\documents\universidad\algoritmos\compresor de archivos\compresor de archivos\main.cpp(79): warning C4101: 't': unreferenced local variable
+c:\users\ale-h\documents\universidad\algoritmos\compresor de archivos\compresor de archivos\main.cpp(153): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\ale-h\documents\universidad\algoritmos\compresor de archivos\compresor de archivos\main.cpp(261): warning C4101: 't': unreferenced local variable
+  Compresor de Archivos.vcxproj -> C:\Users\ale-h\Documents\Universidad\Algoritmos\Compresor de Archivos\x64\Debug\Compresor de Archivos.exe
