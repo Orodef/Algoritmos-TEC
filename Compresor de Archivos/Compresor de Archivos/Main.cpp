@@ -397,42 +397,42 @@ bool Tree::operator>=(const Tree & T) const
 }
 
 //Búsqueda de strings de Hufmman (func.  recursiva)
-//entradas : a tree node to start the search, a char to find its
-//        Huffman string equivalent, current Huffman string according to
-//        position on the Huffman tree, and a string (by reference) to
-//        copy the resulted full Huffman string end of the search
-//salidas: none (except Huffman string by reference)
+//entradas : un nodo del arbol de huffman y un string para
+//       encontrar su equivalente, string de Huffman actual de acuerdo con
+//        su posición en el arbol, y  un string (por referencia) para poder
+//        copiar el resultado de string de Huffman
+//salidas: ninguna
 void Tree::huf(Node* N, unsigned char c, string str, string & s) const
 {
-	if (N) //if the node is not null
+	if (N) //Si el nodo no está lleno
 	{
-		//compare char of the leaf node and the given char
+		//Compare el char de la hoja con el char dado
 		if (!N->left && !N->right && N->ch == c)
 		{
-			s = str; //if the char is found then copy the H. string
+			s = str; //Si encuentra el char entonces cópielo en el string de Huffman
 		}
 		else
 		{
-			//continue to search if the same char still not found
+			//continue la búsqueda si no encontró el string
 			huf(N->left, c, str + "0", s);
 			huf(N->right, c, str + "1", s);
 		}
 	}
 }
 
-//Huffman char-string lister (func.  recursiva)
-//entradas : a tree node to start the search, current Huffman string according to
-//        position on the Huffman tree
-//output: whole list of char-H. string code list of the H. tree
+//lista las char-string de Huffman (func.  recursiva)
+//entradas : un nodo del arbol para comenzar la búsqueda, string de Huffman actual de acuerdo con
+//        su posición en el arbol de Huffman 
+//output: lista de char-string de Huffman
 void Tree::huf_list(Node* N, string str) const
 {
-	if (N) //if the node is not null
+	if (N) //Si el nodo no está lleno
 	{
-		if (!N->left && !N->right) //if it is a leaf node
+		if (!N->left && !N->right) //si es un nodo hoja
 			cout << print_char(N) << " " << str << endl;
 		else
 		{
-			//continue to search
+			//continue la búsqueda
 			huf_list(N->left, str + "0");
 			huf_list(N->right, str + "1");
 		}
@@ -440,23 +440,23 @@ void Tree::huf_list(Node* N, string str) const
 }
 
 //char finder with given Huffman string
-//entradas : a Huffman string to traverse on the H. tree and
-//        a u. char by ref. to copy the char found
-//salidas: true if a char is found else false
+//entradas : un string de Huffman para curzar con el arbol y 
+//           un char para que sea copiado y pasado por referencia
+//salidas: true si encuentra el char, sino false
 bool Tree::get_huf_char(string s, unsigned char & c) const
 {
 	Node * curr = root;
 	for (unsigned int i = 0; i<s.size(); ++i)
 	{
-		if (s[i] == '0') //go to left in the H. tree
+		if (s[i] == '0') //ir a la izquierda en el arbol
 			curr = curr->left;
-		if (s[i] == '1') //go to right in the H. tree
+		if (s[i] == '1') //ir a la derecha ne el arbol
 			curr = curr->right;
 	}
 
 	bool found = false;
 
-	if (!curr->left && !curr->right) //if it is a leaf node
+	if (!curr->left && !curr->right) //si es un nodo hoja
 	{
 		found = true;
 		c = curr->ch;
@@ -465,21 +465,20 @@ bool Tree::get_huf_char(string s, unsigned char & c) const
 	return found;
 }
 
-//entradas : a H. tree node
-//salidas: the same char as string or if the char is not printable
-//        then its octal representation in the ASCII char set
+//entradas : un nodo del arbol de Huffman
+//salidas: el mismo char si no se puede imprimir, o su equivalente ASCII
 string Tree::print_char(Node * N) const
 {
 	string s = "";
 
-	if (!N->left && !N->right) //if it is a leaf node
+	if (!N->left && !N->right) //si es un nodo hoja
 	{
 		unsigned char c = N->ch;
 
-		//if the char is not printable then output its octal ASCII code
+		//si el char no se puede imprimir retorna el código octal de ASCII
 		if (iscntrl(c) || c == 32) //32:blank char
 		{
-			//calculate the octal code of the char (3 digits)
+			//calcula el código octal del char
 			char* cp = new char;
 			for (int i = 0; i<3; ++i)
 			{
@@ -488,7 +487,7 @@ string Tree::print_char(Node * N) const
 				c /= 8;
 				s = (*cp) + s;
 			}
-			s = '/' + s; // adds \ in front of the octal code
+			s = '/' + s; // añade \ en frente del código octal
 		}
 		else
 			s = c;
@@ -496,19 +495,19 @@ string Tree::print_char(Node * N) const
 	return s;
 }
 
-//the given bit will be written to the output file stream
+//el bit actual se escribe en el archivo final
 //entradas : unsigned char i(:0 or 1 : bit to write ; 2:EOF) 
 void huf_write(unsigned char i, ofstream & outfile)
 {
-	static int bit_pos = 0; //0 to 7 (left to right) on the byte block
-	static unsigned char c = '\0'; //byte block to write
+	static int bit_pos = 0; //0 a 7 en el bloque de bits
+	static unsigned char c = '\0'; //byte bloqueda para escritura
 
 	if (i<2) //if not EOF
 	{
 		if (i == 1)
-			c = c | (i << (7 - bit_pos)); //add a 1 to the byte
+			c = c | (i << (7 - bit_pos)); //anñade un 1 al byte
 		else //i==0
-			c = c & static_cast<unsigned char>(255 - (1 << (7 - bit_pos))); //add a 0
+			c = c & static_cast<unsigned char>(255 - (1 << (7 - bit_pos))); //añade un 0
 		++bit_pos;
 		bit_pos %= 8;
 		if (bit_pos == 0)
@@ -523,16 +522,16 @@ void huf_write(unsigned char i, ofstream & outfile)
 	}
 }
 
-//entradas : a entradas file stream to read bits
+//entradas : un archivo para leer sus bits
 //salidas: unsigned char (:0 or 1 as bit read or 2 as EOF) 
 unsigned char huf_read(ifstream & infile)
 {
-	static int bit_pos = 0; //0 to 7 (left to right) on the byte block
+	static int bit_pos = 0; //0 a 7 en el bloque de bits
 	static unsigned char c = infile.get();
 
 	unsigned char i;
 
-	i = (c >> (7 - bit_pos)) % 2; //get the bit from the byte
+	i = (c >> (7 - bit_pos)) % 2; //toma el bit del byte
 	++bit_pos;
 	bit_pos %= 8;
 	if (bit_pos == 0)
@@ -562,7 +561,7 @@ void encoder(string ifile, string ofile, bool verbose)
 		exit(1);
 	}
 
-	//open the output file
+	//abre el archivo de salida
 	ofstream outfile(ofile.c_str(), ios::out | ios::binary);
 	if (!outfile)
 	{
@@ -570,12 +569,12 @@ void encoder(string ifile, string ofile, bool verbose)
 		exit(1);
 	}
 
-	//array to hold frequency table for all ASCII characters in the file
+	//arreglo que guarada las frecuencias de cada caracter
 	unsigned int f[256];
 	for (int i = 0; i<256; ++i)
 		f[i] = 0;
 
-	//read the whole file and count the ASCII char table frequencies
+	//lee todo el archivo y cuenta las repeticiones de los caracteres
 	char c;
 	unsigned char ch;
 	while (infile.get(c))
@@ -584,16 +583,15 @@ void encoder(string ifile, string ofile, bool verbose)
 		++f[ch];
 	}
 
-	infile.clear(); //clear EOF flag
-	infile.seekg(0); //reset get() pointer to beginning
+	infile.clear(); //limpia el marcador EOF
+	infile.seekg(0); //reinicia el puntero get()
 
-	Queue<Tree> q(3); //use a 3-(priority)heap
+	Queue<Tree> q(3); 
 	Tree* tp;
 
 	for (int i = 0; i<256; ++i)
 	{
-		//output char freq table to the output file
-		//divide 32 bit u. int values into 4 bytes
+		//retorna la tabla de frevuencias al archivo de salida
 		outfile.put(static_cast<unsigned char>(f[i] >> 24));
 		outfile.put(static_cast<unsigned char>((f[i] >> 16) % 256));
 		outfile.put(static_cast<unsigned char>((f[i] >> 8) % 256));
@@ -601,7 +599,7 @@ void encoder(string ifile, string ofile, bool verbose)
 
 		if (f[i]>0)
 		{
-			//send freq-char pairs to the priority heap as Huffman trees
+			//envía pares de caracter-frecuencia
 			tp = new Tree;
 			(*tp).set_freq(f[i]);
 			(*tp).set_char(static_cast<unsigned char>(i));
@@ -609,7 +607,7 @@ void encoder(string ifile, string ofile, bool verbose)
 		}
 	}
 
-	//construct the main Huffman Tree
+	//construye el arbol de Huffman principal
 	Tree* tp2;
 	Tree* tp3;
 
@@ -618,8 +616,8 @@ void encoder(string ifile, string ofile, bool verbose)
 		tp = q.deq();
 		if (!q.empty())
 		{
-			//get the 2 lowest freq. H. trees and combine them into one
-			//and put back into the priority heap
+			//toma las dos frecuencias menores y las combian en una
+			//y os pone de nuevo en la cola
 			tp2 = q.deq();
 			tp3 = new Tree;
 			(*tp3).set_freq((*tp).get_freq() + (*tp2).get_freq());
@@ -627,9 +625,9 @@ void encoder(string ifile, string ofile, bool verbose)
 			(*tp3).set_right((*tp2).get_root());
 			q.enq(tp3);
 		}
-	} while (!q.empty()); //until all sub-trees combined into one
+	} while (!q.empty()); //hasta que todos los subárboles estén combinados en uno solo
 
-						  //find H. strings of all chars in the H. tree and put into a string table
+						  //encuentra strings para todos los chars y los pone en una tabla
 	string H_table[256];
 	unsigned char uc;
 	for (unsigned short us = 0; us<256; ++us)
@@ -641,8 +639,8 @@ void encoder(string ifile, string ofile, bool verbose)
 
 	if (verbose)
 	{
-		cout << *tp << endl; //output the Huffman tree
-							 //output the char-H. string list 
+		cout << *tp << endl; //retrona ek arbol de Huffman
+							 //retorna la lista de strings
 		(*tp).huf_list((*tp).get_root(), "");
 		cout << "frequency table is " << sizeof(unsigned int) * 256 << " bytes" << endl;
 	}
@@ -650,12 +648,12 @@ void encoder(string ifile, string ofile, bool verbose)
 	unsigned int total_chars = (*tp).get_freq();
 	cout << "total chars to encode:" << total_chars << endl;
 
-	//output Huffman coded chars into the output file
+	//envía los códigos de Huffman al archivo de salida
 	unsigned char ch2;
 	while (infile.get(c))
 	{
 		ch = c;
-		//send the Huffman string to output file bit by bit
+		//envía los strings de Huffman al archivo de salida bit por bit
 		for (unsigned int i = 0; i<H_table[ch].size(); ++i)
 		{
 			if (H_table[ch].at(i) == '0')
@@ -665,13 +663,13 @@ void encoder(string ifile, string ofile, bool verbose)
 			huf_write(ch2, outfile);
 		}
 	}
-	ch2 = 2; // send EOF
+	ch2 = 2; // envía el EOF
 	huf_write(ch2, outfile);
 
 	infile.close();
 	outfile.close();
 
-} //end of Huffman encoder
+} //termina el encode de Huffman
 
   //Huffman Decoder
 void decoder(string ifile, string ofile, bool verbose)
@@ -689,7 +687,7 @@ void decoder(string ifile, string ofile, bool verbose)
 		exit(1);
 	}
 
-	//open the output file
+	//abre el archivo de salida
 	ofstream outfile(ofile.c_str(), ios::out | ios::binary);
 	if (!outfile)
 	{
@@ -697,14 +695,14 @@ void decoder(string ifile, string ofile, bool verbose)
 		exit(1);
 	}
 
-	//read frequency table from the input file
+	//lee la tabal de frevuencias del archivo de entrada
 	unsigned int f[256];
 	char c;
 	unsigned char ch;
 	unsigned int j = 1;
 	for (int i = 0; i<256; ++i)
 	{
-		//read 4 bytes and combine them into one 32 bit u. int value
+		//lee 4 bytes y los combian en 32 bits
 		f[i] = 0;
 		for (int k = 3; k >= 0; --k)
 		{
@@ -714,15 +712,15 @@ void decoder(string ifile, string ofile, bool verbose)
 		}
 	}
 
-	//re-construct the Huffman tree
-	Queue<Tree> q(3); //use a 3-(priority)heap (again)
+	//reconstruye el árbol de Huffman
+	Queue<Tree> q(3); 
 	Tree* tp;
 
 	for (int i = 0; i<256; ++i)
 	{
 		if (f[i]>0)
 		{
-			//send freq-char pairs to the priority heap as Huffman trees
+			//envía los pares de caracter-frecuencia
 			tp = new Tree;
 			(*tp).set_freq(f[i]);
 			(*tp).set_char(static_cast<unsigned char>(i));
@@ -730,7 +728,7 @@ void decoder(string ifile, string ofile, bool verbose)
 		}
 	}
 
-	//construct the main Huffman Tree (as in Encoder func.)
+	//construye el arbol de Huffman principal
 	Tree* tp2;
 	Tree* tp3;
 
@@ -739,8 +737,8 @@ void decoder(string ifile, string ofile, bool verbose)
 		tp = q.deq();
 		if (!q.empty())
 		{
-			//get the 2 lowest freq. H. trees and combine them into one
-			//and put back into the priority heap
+			//toma las dos menores dfrecuencias y las combian en una sola
+			//y las vuelve a poner en la cola
 			tp2 = q.deq();
 			tp3 = new Tree;
 			(*tp3).set_freq((*tp).get_freq() + (*tp2).get_freq());
@@ -748,37 +746,37 @@ void decoder(string ifile, string ofile, bool verbose)
 			(*tp3).set_right((*tp2).get_root());
 			q.enq(tp3);
 		}
-	} while (!q.empty()); //until all sub-trees combined into one
+	} while (!q.empty()); //hasta que todos los subárboles se combinan en uno solo
 
 	if (verbose)
 	{
-		cout << *tp << endl; //output the Huffman tree
-							 //output the char-H. string list 
+		cout << *tp << endl; //retorna el arbol de Huffman
+							 //retorna la lista de char-string de Huffman 
 		(*tp).huf_list((*tp).get_root(), "");
 		cout << "frequency table is " << sizeof(unsigned int) * 256 << " bytes" << endl;
 	}
 
-	//read Huffman strings from the input file
-	//find out the chars and write into the output file
+	//lee los strings de Huffman del archivo de entrada
+	//encuentra los chars y los escribe en el archivo de salida
 	string st;
 	unsigned char ch2;
 	unsigned int total_chars = (*tp).get_freq();
 	cout << "total chars to decode:" << total_chars << endl;
-	while (total_chars>0) //continue until no char left to decode 
+	while (total_chars>0) //continua hasta que no queden chars para descifrar 
 	{
-		st = ""; //current Huffman string
+		st = ""; //actual string de Huffman
 		do
 		{
-			//read H. strings bit by bit
+			//lee los stings de Huffman bit por bit
 			ch = huf_read(infile);
 			if (ch == 0)
 				st = st + '0';
 			if (ch == 1)
 				st = st + '1';
-		} //search the H. tree
-		while (!(*tp).get_huf_char(st, ch2)); //continue until a char is found
+		} //busca en el arbol de Huffman
+		while (!(*tp).get_huf_char(st, ch2)); //continua hasta que encuentra el string
 
-											  //output the char to the output file
+											  //retorna el char al archivo de salida
 		outfile.put(static_cast<char>(ch2));
 		--total_chars;
 	}
@@ -786,7 +784,7 @@ void decoder(string ifile, string ofile, bool verbose)
 	infile.close();
 	outfile.close();
 
-} //end of Huffman decoder
+} //termina el descifrador
 
 void usage_msg(const string & pname)
 {
