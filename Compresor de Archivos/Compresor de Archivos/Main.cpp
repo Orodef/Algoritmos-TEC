@@ -26,60 +26,60 @@ class Queue
 {
 public:
 
-	Queue(int d = 2); //constructor 
-	~Queue(void); //destructor
-	void enq(T*); //enqueue (to push)
-	T* deq(void); //dequeue (to pop)
-	T* front(void); //the front element
-	bool empty(void) const; //is empty?
-	bool full(void) const; //is full?
+	Queue(int d = 2); //constructor de clase
+	~Queue(void); //destructor de clase
+	void enq(T*); //poner en la cola
+	T* deq(void); //sacar de la cola
+	T* front(void); //el elemento de en frente (top)
+	bool empty(void) const; //verificaci[on de si está vacío
+	bool full(void) const; //verificaci[on de si está lleno
 
 private:
 
-	int back; //the last element in the queue
-	T* *arr; //dynamic array
-	int size; //current size of the queue array
-	static const int SIZE = 10; //size increment step size  
-	int D; //max number of children for a parent>=2 
-		   //copy constructor and assignment are hidden to protect 
+	int back; //el último elemento en la cola
+	T* *arr; //arreglp dinámico
+	int size; //tamaño actual del arreglo
+	static const int SIZE = 10; //tamaño en el que incrementa
+	int D; //mayor npumero de hijos en un nodo padre
+		   
 	Queue(const Queue &);
 	const Queue & operator=(const Queue &);
 
-	//utility functions to fix the heap
-	//when an element added or removed 
-	void reheapup(int, int); //fix heap upward
-	void reheapdown(int, int); //fix heap downward
-	void swap(T* &, T* &); //swap f. needed by reheapup/down functions
+	//Funciones de utilidad para arreglar
+	//cuando se agregan o se eliminan elementos
+	void reheapup(int, int); //corregir hacia arriba
+	void reheapdown(int, int); //corregir hacia abajo
+	void swap(T* &, T* &); //funcion de intercambio que es necesaria para las dos anteriores
 
-}; //end class
+}; //termina la parte de lña clase
 
 
-   // constructor (creates a new queue) 
+   // constructor (crea una nueva cola) 
 template<class T>
 Queue<T>::Queue(int d)
 {
-	if (d<2) d = 2; //min a 2-heap is supported
+	if (d<2) d = 2; //soporta como mínimo 2
 	D = d;
 	back = 0;
 	size = SIZE;
 	arr = new T*[size];
 }
 
-// is queue empty?
+// pregunta si la cola está vacía
 template<class T>
 bool Queue<T>::empty(void) const
 {
 	return (back <= 0);
 }
 
-// is queue full?
+// pregunta si la cola está llena
 template<class T>
 bool Queue<T>::full(void) const
 {
 	return (back >= size);
 }
 
-// the front element of the queue 
+// pregunta por el elemento de en frente de la cola
 template<class T>
 T* Queue<T>::deq(void)
 {
@@ -90,13 +90,13 @@ T* Queue<T>::deq(void)
 	}
 
 	T* rval = arr[0];
-	arr[0] = arr[back - 1]; //the element in the back moved to front
+	arr[0] = arr[back - 1]; //el elmento de atrás se mueve al frente
 	--back;
-	reheapdown(0, back - 1); //reheapdown called to fix the order back 
+	reheapdown(0, back - 1); //se llama a la función para que corrija el orden de nuevo 
 	return rval;
 }
 
-// a copy of the front element is returned but the queue is not changed
+// SE retorna una copia del primer elemento pero la cola no cambia
 template<class T>
 T* Queue<T>::front(void)
 {
@@ -109,41 +109,41 @@ T* Queue<T>::front(void)
 	return arr[0];
 }
 
-// a new element to put in the queue
+// se añanade un nuevo elemento a la cola
 template<class T>
 void Queue<T>::enq(T* foo)
 {
-	if (full()) //if the array is full then make it larger
+	if (full()) //Si el arreglo está lleno entonces se aumenta su tamaño
 	{
-		int nsize = size + SIZE; //the size of the new array
-		T* *narr = new T*[nsize]; //new array
-		for (int i = 0; i<size; ++i) //copy old array to the new one
+		int nsize = size + SIZE; //el tamaño del nuevo arreglo
+		T* *narr = new T*[nsize]; //el nuevo arreglo como tal
+		for (int i = 0; i<size; ++i) //se copia el arreglo anterior al nuevo
 			narr[i] = arr[i];
-		delete[] arr; //delete reserved old array mem
-		arr = narr; //pointer update
-		size = nsize; //size update
+		delete[] arr; //se elimina la memoria que estaba ocupando el arreglo anterior
+		arr = narr; //se actualiza el puntero
+		size = nsize; //se actualiza el tamaño
 	}
 
-	//the new element added to the back of the queue
-	//and the reheapup called to fix the order back
+	//se añade el nuevo elemento a la parte trasera del arreglo
+	//se allama a la función reheapup para que corrija el orden
 	arr[back++] = foo; //arr[back]=foo;++back;
 	reheapup(0, back - 1);
 }
 
-// this is a recursive function to fix back the order in the queue
-// upwards after a new element added back (bottom) of the queue 
+// Esta es la función recursiva que se encarga de corregir el orden en el arreglo
+// desde la parte de abajo después de haber añadido un elemento a la parte trasera
 template<class T>
 void Queue<T>::reheapup(int root, int bottom)
 {
-	int parent; //parent node (in the virtual tree) of the bottom element
+	int parent; // nodo padre del último elemento
 
 	if (bottom > root)
 	{
 		parent = (bottom - 1) / D;
 
-		//compare the two node and if the order is wrong then swap them
-		//and make a recursive call to continue upward in the virtual tree
-		//until the whole tree heap order is restored   
+		//compara dos nodos y si el orden es iincorrecto los intercambia
+		//y hace una llamada recursiva para así ir subiendo en el arbol
+		//hasta que todo el orden del arbol sea el correcto
 		if (*arr[parent] > *arr[bottom])
 		{
 			swap(arr[parent], arr[bottom]);
@@ -152,26 +152,26 @@ void Queue<T>::reheapup(int root, int bottom)
 	}
 }
 
-// this is a recursive function to fix back the order in the queue
-// downwards after a new element added front (root) of the queue 
+// Esta es la función recursiva que se encarga del orden de la cola
+// de arriba hacia abajo cuando un elemen se agrega ala parte superior
 template<class T>
 void Queue<T>::reheapdown(int root, int bottom)
 {
 	int minchild, firstchild, child;
 
-	firstchild = root * D + 1; //the position of the first child of the root
+	firstchild = root * D + 1; //la posisción del primer hijo de la raíz
 
-	if (firstchild <= bottom) //if the child is in the queue
+	if (firstchild <= bottom) //pregunta si el hijo está en la cola
 	{
-		minchild = firstchild; //first child is the min child (temporarily)
+		minchild = firstchild; //el primer hijo es el menor (temporalmente)
 
 		for (int i = 2; i <= D; ++i)
 		{
-			child = root * D + i; //position of the next child
-			if (child <= bottom) //if the child is in the queue
+			child = root * D + i; //posisción del segundo hijo
+			if (child <= bottom) //pregunta si el hijo está en la cola
 			{
-				//if the child is less than the current min child
-				//then it will be the new min child
+				//Si etse es menor que el quese estabelció como menor
+				//entonces son intercambiados
 				if (*arr[child] < *arr[minchild])
 				{
 					minchild = child;
@@ -179,9 +179,9 @@ void Queue<T>::reheapdown(int root, int bottom)
 			}
 		}
 
-		//if the min child found is less then the root(parent node)
-		//then swap them and call reheapdown() recursively and
-		//continue to fix the order in the virtual tree downwards
+		//Si el hijo menor encontrado es menos que su raiz
+		//se intercambian y se llama recursivamente a reheapdown() 
+		//para que corrija el orden del arbol hacia abajo
 		if (*arr[root] > *arr[minchild])
 		{
 			swap(arr[root], arr[minchild]);
@@ -190,7 +190,7 @@ void Queue<T>::reheapdown(int root, int bottom)
 	}
 }
 
-// the values of 2 variables will be swapped
+// se intercambia el valor de dos variables
 template<class T>
 void Queue<T>::swap(T* &a, T* &b)
 {
@@ -200,7 +200,7 @@ void Queue<T>::swap(T* &a, T* &b)
 	b = c;
 }
 
-// destructor (because default dest. does not erase the array)
+// destructor del arreglo
 template<class T>
 Queue<T>::~Queue(void)
 {
@@ -208,7 +208,7 @@ Queue<T>::~Queue(void)
 }
 
 
-// Huffman Tree
+// Arbol de Huffman
 class Tree
 {
 private:
@@ -225,19 +225,17 @@ private:
 
 	Node *root;
 
-	//copy cons. and assign. op. overload prototypes are private to
-	//prevent them to be used
-	Tree(const Tree &); //copy constructor
+	Tree(const Tree &); //copia el constructor
 	const Tree & operator=(const Tree &); //assignment oper. overload
-	void chop(Node * N); //destroys the tree
-	void print(ostream &, Node *, int) const; //prints the tree
-	void print(Node *, int) const; //prints the tree
+	void chop(Node * N); //destruye el arbol
+	void print(ostream &, Node *, int) const; //imprime el arbol
+	void print(Node *, int) const; //imprime el arbol
 
 public:
 	Tree(void); //constructor
 	~Tree(void); //destructor
 	friend ostream & operator<<(ostream &, const Tree &);
-	//utility functions to get or set class members
+	//Funciones de utilidad para clase get y set
 	unsigned int get_freq(void) const;
 	unsigned char get_char(void) const;
 	void set_freq(unsigned int);
@@ -247,8 +245,7 @@ public:
 	void set_left(Node *);
 	void set_right(Node *);
 	Node* get_root(void) const;
-	//comparison operator overloads to compare
-	//2 objects of the class
+	//compara dos objetos de la clase
 	bool operator==(const Tree &) const;
 	bool operator!=(const Tree &) const;
 	bool operator<(const Tree &) const;
@@ -256,13 +253,13 @@ public:
 	bool operator<=(const Tree &) const;
 	bool operator>=(const Tree &) const;
 
-	//to get H. string of a given char
+	//obtiene la cadena de Huffman para un char
 	void huf(Node *, unsigned char, string, string &) const;
-	//outputs the H. char-string pairs list
+	//retorna la cadena de Huffman para un char
 	void huf_list(Node *, string) const;
-	//to get char equivalent of a H. string (if exists)
+	//obtiene el equivalente en char de una cadena de HUffman, si existe
 	bool get_huf_char(string, unsigned char &) const;
-	string print_char(Node *) const; //prints chars 
+	string print_char(Node *) const; //imprime los chars
 };
 
 //constructor
@@ -272,7 +269,7 @@ Tree::Tree(void)
 	root = N;
 }
 
-//recursive func to delete the whole tree
+//función recursiva para destruir el arbol
 void Tree::chop(Node *N)
 {
 	if (N)
@@ -283,7 +280,7 @@ void Tree::chop(Node *N)
 	}
 }
 
-//destructor for tree objects
+//destructor de objetos en el arbol
 Tree::~Tree(void)
 {
 	chop(root);
@@ -334,40 +331,40 @@ Tree::Node* Tree::get_root(void) const
 	return root;
 }
 
-//the recursive tree output (w/ respect to its graph) fn.
+//la salida recursiva del arbol
 void Tree::print(ostream & ost, Node * curr, int level) const
 {
-	if (curr) //if the current node is not null then
+	if (curr) //si el nodo actual no está lleno, entonces
 	{
-		print(ost, curr->right, level + 1); //try to go to right node
-											//output the node data w/ respect to its level
+		print(ost, curr->right, level + 1); //intenta ir al nodo derecho
+											//retorna los datos del nodo con respecto a su nivel
 		ost << setw(level*width_unit) << print_char(curr) << ":"
 			<< curr->freq << endl;
-		print(ost, curr->left, level + 1); //try to go to left node
+		print(ost, curr->left, level + 1); //intenta ir al nodo izquierdo
 	}
 }
 
-//the recursive tree print (w/ respect to its graph) fn.
+//Impresión recursiva del arbol
 void Tree::print(Node * curr, int level) const
 {
-	if (curr) //if the current node is not null then
+	if (curr) //si el nodo actusal no está lleno
 	{
-		print(curr->right, level + 1); //try to go to right node
-									   //print the node data w/ respect to its level
+		print(curr->right, level + 1); //intenta ir al nodo derecho
+									   //retorna los datos del nodo con respecto a su nivel
 		cout << setw(level*width_unit) << print_char(curr) << ":"
 			<< curr->freq << endl;
-		print(curr->left, level + 1); //try to go to left node
+		print(curr->left, level + 1); //intenta ir al nodo izquierdo
 	}
 }
 
-//utility fn to output a tree
+//función de utilidad para retornar el arbol
 ostream & operator<<(ostream &ost, const Tree &t)
 {
 	t.print(ost, t.root, 1);
 	return ost;
 }
 
-//the comparison operator overloads to compare 2 Huffman trees
+//Comparación de dos árboles de Huffman
 
 bool Tree::operator==(const Tree & T) const
 {
@@ -399,12 +396,12 @@ bool Tree::operator>=(const Tree & T) const
 	return (root->freq >= T.root->freq);
 }
 
-//Huffman string finder (recursive func.)
-//input : a tree node to start the search, a char to find its
+//Búsqueda de strings de Hufmman (func.  recursiva)
+//entradas : a tree node to start the search, a char to find its
 //        Huffman string equivalent, current Huffman string according to
 //        position on the Huffman tree, and a string (by reference) to
 //        copy the resulted full Huffman string end of the search
-//return: none (except Huffman string by reference)
+//salidas: none (except Huffman string by reference)
 void Tree::huf(Node* N, unsigned char c, string str, string & s) const
 {
 	if (N) //if the node is not null
@@ -423,8 +420,8 @@ void Tree::huf(Node* N, unsigned char c, string str, string & s) const
 	}
 }
 
-//Huffman char-string lister (recursive func.)
-//input : a tree node to start the search, current Huffman string according to
+//Huffman char-string lister (func.  recursiva)
+//entradas : a tree node to start the search, current Huffman string according to
 //        position on the Huffman tree
 //output: whole list of char-H. string code list of the H. tree
 void Tree::huf_list(Node* N, string str) const
@@ -443,9 +440,9 @@ void Tree::huf_list(Node* N, string str) const
 }
 
 //char finder with given Huffman string
-//input : a Huffman string to traverse on the H. tree and
+//entradas : a Huffman string to traverse on the H. tree and
 //        a u. char by ref. to copy the char found
-//return: true if a char is found else false
+//salidas: true if a char is found else false
 bool Tree::get_huf_char(string s, unsigned char & c) const
 {
 	Node * curr = root;
@@ -468,8 +465,8 @@ bool Tree::get_huf_char(string s, unsigned char & c) const
 	return found;
 }
 
-//input : a H. tree node
-//return: the same char as string or if the char is not printable
+//entradas : a H. tree node
+//salidas: the same char as string or if the char is not printable
 //        then its octal representation in the ASCII char set
 string Tree::print_char(Node * N) const
 {
@@ -500,7 +497,7 @@ string Tree::print_char(Node * N) const
 }
 
 //the given bit will be written to the output file stream
-//input : unsigned char i(:0 or 1 : bit to write ; 2:EOF) 
+//entradas : unsigned char i(:0 or 1 : bit to write ; 2:EOF) 
 void huf_write(unsigned char i, ofstream & outfile)
 {
 	static int bit_pos = 0; //0 to 7 (left to right) on the byte block
@@ -526,8 +523,8 @@ void huf_write(unsigned char i, ofstream & outfile)
 	}
 }
 
-//input : a input file stream to read bits
-//return: unsigned char (:0 or 1 as bit read or 2 as EOF) 
+//entradas : a entradas file stream to read bits
+//salidas: unsigned char (:0 or 1 as bit read or 2 as EOF) 
 unsigned char huf_read(ifstream & infile)
 {
 	static int bit_pos = 0; //0 to 7 (left to right) on the byte block
@@ -632,7 +629,7 @@ void encoder(string ifile, string ofile, bool verbose)
 		}
 	} while (!q.empty()); //until all sub-trees combined into one
 
-						 //find H. strings of all chars in the H. tree and put into a string table
+						  //find H. strings of all chars in the H. tree and put into a string table
 	string H_table[256];
 	unsigned char uc;
 	for (unsigned short us = 0; us<256; ++us)
